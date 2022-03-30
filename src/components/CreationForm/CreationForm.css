@@ -1,0 +1,21 @@
+div.form {
+  width: 30%;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  margin: 0 auto;
+}
+
+input,
+textarea {
+  margin-bottom: 40px;
+}
+
+input#date {
+  width: 50%;
+}
+input#peopleNum {
+  width: 20%;
+}
+select#splitType {
+  width: 40%;
+}
