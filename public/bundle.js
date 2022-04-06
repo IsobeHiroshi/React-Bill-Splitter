@@ -8527,8 +8527,10 @@ var CreationForm = function CreationForm() {
   };
 
   var NumOfPeopleArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
     className: "form"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
+    id: "firstSection"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
     htmlFor: ""
   }, "Date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
@@ -8547,6 +8549,12 @@ var CreationForm = function CreationForm() {
     cols: "30",
     rows: "5"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+    htmlFor: "totalAmount"
+  }, "Total Amount"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+    type: "text",
+    name: "totalAmount",
+    id: "totalAmount"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
     htmlFor: "splitType"
   }, "Split type"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
     name: "splitType",
@@ -8557,7 +8565,7 @@ var CreationForm = function CreationForm() {
     value: ""
   }, "Russian Roulette")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
     htmlFor: "peopleNum"
-  }, "Number of people"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+  }, "Number of people", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "(max:10)")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     type: "number",
     name: "peopleNum",
     id: "peopleNum",
@@ -8566,11 +8574,22 @@ var CreationForm = function CreationForm() {
     onChange: function onChange(event) {
       handleNumOfPeopleChange(event);
     }
-  }), NumOfPeopleArr.slice(0, numOfPeople).map(function (num) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-      key: num
-    }, "input");
-  }));
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
+    id: "secondSection"
+  }, NumOfPeopleArr.slice(0, numOfPeople).map(function (num) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+      htmlFor: "peopleName".concat(num),
+      className: "participantLabel"
+    }, "Participant".concat(num)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+      key: num,
+      type: "text",
+      className: "participantInput",
+      name: "peopleName".concat(num),
+      id: "peopleName".concat(num)
+    }));
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    className: "submitButton"
+  }, "Submit!"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (CreationForm);
@@ -8590,17 +8609,17 @@ __webpack_require__.r(__webpack_exports__);
 
 var RetrievalForm = function RetrievalForm() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "form"
-  }, "History");
+    className: "history"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "History"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (RetrievalForm);
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js!./src/index.css":
+/***/ "./node_modules/css-loader/dist/cjs.js!./src/style.css":
 /*!*************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./src/index.css ***!
+  !*** ./node_modules/css-loader/dist/cjs.js!./src/style.css ***!
   \*************************************************************/
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -8614,16 +8633,16 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "h1 {\n  text-align: center;\n  margin-bottom: 50px;\n}\n\ndiv#buttonWrapper {\n  width: 30%;\n  margin: 50px auto;\n}\n\ndiv.form {\n  width: 30%;\n  display: grid;\n  grid-template-columns: 1fr 2fr;\n  margin: 0 auto;\n}\n\ninput,\ntextarea,\nselect {\n  margin-bottom: 40px;\n}\n\ninput#date {\n  width: 50%;\n}\ninput#peopleNum {\n  width: 20%;\n}\nselect#splitType {\n  width: 40%;\n}\n", "",{"version":3,"sources":["webpack://./src/index.css"],"names":[],"mappings":"AAAA;EACE,kBAAkB;EAClB,mBAAmB;AACrB;;AAEA;EACE,UAAU;EACV,iBAAiB;AACnB;;AAEA;EACE,UAAU;EACV,aAAa;EACb,8BAA8B;EAC9B,cAAc;AAChB;;AAEA;;;EAGE,mBAAmB;AACrB;;AAEA;EACE,UAAU;AACZ;AACA;EACE,UAAU;AACZ;AACA;EACE,UAAU;AACZ","sourcesContent":["h1 {\n  text-align: center;\n  margin-bottom: 50px;\n}\n\ndiv#buttonWrapper {\n  width: 30%;\n  margin: 50px auto;\n}\n\ndiv.form {\n  width: 30%;\n  display: grid;\n  grid-template-columns: 1fr 2fr;\n  margin: 0 auto;\n}\n\ninput,\ntextarea,\nselect {\n  margin-bottom: 40px;\n}\n\ninput#date {\n  width: 50%;\n}\ninput#peopleNum {\n  width: 20%;\n}\nselect#splitType {\n  width: 40%;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "h1 {\n  text-align: center;\n  margin-bottom: 50px;\n}\n\ndiv#buttonWrapper {\n  width: 50%;\n  margin: 50px auto;\n}\n\ndiv.history {\n  width: 50%;\n  width: 50%;\n  margin: 0 auto;\n}\n\nform.form {\n  width: 50%;\n  margin: 0 auto;\n}\n\nform.form section#firstSection {\n  display: grid;\n  grid-template-columns: 2fr 3fr;\n}\n\nform.form section#firstSection input,\nform.form section#firstSection textarea,\nform.form section#firstSection select {\n  margin-bottom: 40px;\n}\n\nform.form section#firstSection span {\n  font-size: 0.8rem;\n  margin-left: 10px;\n}\n\nform.form section#firstSection input#date {\n  width: 50%;\n}\n\nform.form section#firstSection input#peopleNum {\n  width: 20%;\n}\n\nform.form section#firstSection select#splitType,\nform.form section#firstSection input#totalAmount {\n  width: 40%;\n}\n\nform.form section#secondSection {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n}\n\nform.form section#secondSection .participantLabel {\n  margin-right: 10px;\n}\n\nform.form section#secondSection .participantInput {\n  margin-bottom: 20px;\n}\n\nform.form button.submitButton {\n  margin-top: 30px;\n}\n/*# sourceMappingURL=style.css.map */", "",{"version":3,"sources":["webpack://./src/sass/style.scss","webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,kBAAkB;EAClB,mBAAmB;ACCrB;;ADEA;EACE,UAAU;EACV,iBAAiB;ACCnB;;ADEA;EACE,UAAU;EACV,UAAU;EACV,cAAc;ACChB;;ADEA;EACE,UAAU;EACV,cAAc;ACChB;;ADHA;EAII,aAAa;EACb,8BAA8B;ACGlC;;ADRA;;;EASM,mBAAmB;ACKzB;;ADdA;EAYM,iBAAiB;EACjB,iBAAiB;ACMvB;;ADnBA;EAiBM,UAAU;ACMhB;;ADvBA;EAoBM,UAAU;ACOhB;;AD3BA;;EAwBM,UAAU;ACQhB;;ADhCA;EA4BI,aAAa;EACb,8BAA8B;ACQlC;;ADrCA;EA+BM,kBAAkB;ACUxB;;ADzCA;EAkCM,mBAAmB;ACWzB;;AD7CA;EAsCI,gBAAgB;ACWpB;AACA,oCAAoC","sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
 
 /***/ }),
 
-/***/ "./src/index.css":
+/***/ "./src/style.css":
 /*!***********************!*\
-  !*** ./src/index.css ***!
+  !*** ./src/style.css ***!
   \***********************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
@@ -8640,7 +8659,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_index_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../node_modules/css-loader/dist/cjs.js!./index.css */ "./node_modules/css-loader/dist/cjs.js!./src/index.css");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_style_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../node_modules/css-loader/dist/cjs.js!./style.css */ "./node_modules/css-loader/dist/cjs.js!./src/style.css");
 
       
       
@@ -8662,12 +8681,12 @@ options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWi
 options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
 options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
 
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_index_css__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_style_css__WEBPACK_IMPORTED_MODULE_6__["default"], options);
 
 
 
 
-       /* harmony default export */ __webpack_exports__["default"] = (_node_modules_css_loader_dist_cjs_js_index_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_index_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_index_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+       /* harmony default export */ __webpack_exports__["default"] = (_node_modules_css_loader_dist_cjs_js_style_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_style_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_style_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
 
 
 /***/ }),
@@ -9068,7 +9087,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
-/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index.css */ "./src/index.css");
+/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.css */ "./src/style.css");
 /* harmony import */ var _components_App_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/App.js */ "./src/components/App.js");
 
 
