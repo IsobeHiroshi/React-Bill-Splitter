@@ -6,7 +6,8 @@ div.form {
 }
 
 input,
-textarea {
+textarea,
+select {
   margin-bottom: 40px;
 }
 
