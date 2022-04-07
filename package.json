@@ -1,50 +1,38 @@
 {
   "name": "project-hiroshi-isobe",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js",
+    "watch": "webpack --watch"
+  },
   "dependencies": {
     "@babel/core": "^7.17.8",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
-    "@testing-library/jest-dom": "^5.16.3",
-    "@testing-library/react": "^12.1.4",
-    "@testing-library/user-event": "^13.5.0",
     "axios": "^0.26.1",
     "babel-loader": "^8.2.4",
     "express": "^4.17.3",
+    "mongoose": "^6.2.10",
     "nodemon": "^2.0.15",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-scripts": "5.0.0",
     "style-loader": "^3.3.1",
-    "web-vitals": "^2.1.4",
     "webpack": "^5.71.0",
     "webpack-cli": "^4.9.2"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "dev": "nodemon app.js",
-    "watch": "webpack --watch"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IsobeHiroshi/React-Bill-Splitter.git"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IsobeHiroshi/React-Bill-Splitter/issues"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "homepage": "https://github.com/IsobeHiroshi/React-Bill-Splitter#readme"
 }
