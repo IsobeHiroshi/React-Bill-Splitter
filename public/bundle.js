@@ -8457,8 +8457,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _CreationForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreationForm */ "./src/components/CreationForm.js");
-/* harmony import */ var _RetrievalForm_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RetrievalForm.js */ "./src/components/RetrievalForm.js");
+/* harmony import */ var _CreationPage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreationPage */ "./src/components/CreationPage.js");
+/* harmony import */ var _RetrievalPage_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RetrievalPage.js */ "./src/components/RetrievalPage.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -8489,7 +8489,7 @@ var App = function App(props) {
     onClick: function onClick(event) {
       return setMode(!mode);
     }
-  }, mode ? "See History" : "Create New")), mode ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CreationForm__WEBPACK_IMPORTED_MODULE_1__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RetrievalForm_js__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
+  }, mode ? "See History" : "Create New")), mode ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CreationPage__WEBPACK_IMPORTED_MODULE_1__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RetrievalPage_js__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
@@ -8522,7 +8522,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var CreationForm = function CreationForm() {
+var CreationForm = function CreationForm(props) {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
       _useState2 = _slicedToArray(_useState, 2),
       numOfPeople = _useState2[0],
@@ -8530,6 +8530,15 @@ var CreationForm = function CreationForm() {
 
   var handleNumOfPeopleChange = function handleNumOfPeopleChange(event) {
     setNumOfPeople(event.target.value);
+  };
+
+  var handleSplitTypeChange = function handleSplitTypeChange(event) {
+    props.setSplitType(event.target.value);
+  };
+
+  var handleSubmitForm = function handleSubmitForm(event) {
+    event.preventDefault;
+    props.setPhase("result");
   };
 
   var NumOfPeopleArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -8564,11 +8573,14 @@ var CreationForm = function CreationForm() {
     htmlFor: "splitType"
   }, "Split type"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
     name: "splitType",
-    id: "splitType"
+    id: "splitType",
+    onChange: function onChange(event) {
+      return handleSplitTypeChange(event);
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
-    value: ""
+    value: "even"
   }, "Even"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
-    value: ""
+    value: "russianRoulette"
   }, "Russian Roulette")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
     htmlFor: "peopleNum"
   }, "Number of people", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "(max:10)")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
@@ -8583,22 +8595,111 @@ var CreationForm = function CreationForm() {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
     id: "secondSection"
   }, NumOfPeopleArr.slice(0, numOfPeople).map(function (num) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      key: "participantDiv".concat(num)
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+      key: "label".concat(num),
       htmlFor: "peopleName".concat(num),
       className: "participantLabel"
     }, "Participant".concat(num)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-      key: num,
+      key: "input".concat(num),
       type: "text",
       className: "participantInput",
       name: "peopleName".concat(num),
       id: "peopleName".concat(num)
     }));
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    className: "submitButton"
+    className: "submitButton",
+    onClick: function onClick(event) {
+      return handleSubmitForm(event);
+    }
   }, "Submit!"));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CreationForm);
+
+/***/ }),
+
+/***/ "./src/components/CreationPage.js":
+/*!****************************************!*\
+  !*** ./src/components/CreationPage.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _CreationForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreationForm */ "./src/components/CreationForm.js");
+/* harmony import */ var _EvenResult__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./EvenResult */ "./src/components/EvenResult.js");
+/* harmony import */ var _RussianResult__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RussianResult */ "./src/components/RussianResult.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+var CreationPage = function CreationPage() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("even"),
+      _useState2 = _slicedToArray(_useState, 2),
+      splitType = _useState2[0],
+      setSplitType = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("input"),
+      _useState4 = _slicedToArray(_useState3, 2),
+      phase = _useState4[0],
+      setPhase = _useState4[1];
+
+  if (phase == "input") {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CreationForm__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      splitType: splitType,
+      setSplitType: setSplitType,
+      phase: phase,
+      setPhase: setPhase
+    });
+  } else if (phase == "result" && splitType == "even") {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_EvenResult__WEBPACK_IMPORTED_MODULE_2__["default"], null);
+  } else if (phase == "result" && splitType == "russianRoulette") {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RussianResult__WEBPACK_IMPORTED_MODULE_3__["default"], null);
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CreationPage);
+
+/***/ }),
+
+/***/ "./src/components/EvenResult.js":
+/*!**************************************!*\
+  !*** ./src/components/EvenResult.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var EvenResult = function EvenResult() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Even Result");
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EvenResult);
 
 /***/ }),
 
@@ -8623,6 +8724,52 @@ var RetrievalForm = function RetrievalForm() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RetrievalForm);
+
+/***/ }),
+
+/***/ "./src/components/RetrievalPage.js":
+/*!*****************************************!*\
+  !*** ./src/components/RetrievalPage.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _RetrievalForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RetrievalForm */ "./src/components/RetrievalForm.js");
+
+
+
+var RetrievalPage = function RetrievalPage() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RetrievalForm__WEBPACK_IMPORTED_MODULE_1__["default"], null);
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RetrievalPage);
+
+/***/ }),
+
+/***/ "./src/components/RussianResult.js":
+/*!*****************************************!*\
+  !*** ./src/components/RussianResult.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var RussianResult = function RussianResult() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Russian Result");
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RussianResult);
 
 /***/ }),
 

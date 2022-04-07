@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import CreationForm from "./CreationForm";
-import RetrievalForm from "./RetrievalForm.js";
+import CreationPage from "./CreationPage";
+import RetrievalPage from "./RetrievalPage.js";
 
 const App = (props) => {
   const [mode, setMode] = useState(true);
@@ -14,7 +14,7 @@ const App = (props) => {
             {mode ? "See History" : "Create New"}
           </button>
         </div>
-        {mode ? <CreationForm /> : <RetrievalForm />}
+        {mode ? <CreationPage /> : <RetrievalPage />}
       </div>
     </>
   );

@@ -13,3 +13,7 @@ mongoose.connect(mongoDB).then(() => {
   console.log("connected");
   const server = app.listen(8080, () => console.log("listening"));
 });
+
+/* const router = require("./routes/index");
+app.use("/api/v1", router);
+ */
