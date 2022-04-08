@@ -6,6 +6,25 @@ import RussianResult from "./RussianResult";
 const CreationPage = () => {
   const [splitType, setSplitType] = useState("even");
   const [phase, setPhase] = useState("input");
+  const [participants, setParticipants] = useState([]);
+  const [totalAmountOfBill, setTotalAmountOfBill] = useState(0);
+
+  const handleTotalAmountOfBillChange = (event) => {
+    setTotalAmountOfBill(event.target.value);
+  };
+
+  const handleSubmitForm = (event) => {
+    event.preventDefault;
+    setPhase("result");
+    const participantInputs = document.querySelectorAll(".participantInput");
+    let temporaryParticipantsArr = [];
+    for (let i = 0; i < participantInputs.length; i++) {
+      let participant = participantInputs[i].value;
+      console.log(participant);
+      temporaryParticipantsArr.push(participant);
+    }
+    setParticipants(temporaryParticipantsArr);
+  };
 
   if (phase == "input") {
     return (
@@ -14,12 +33,26 @@ const CreationPage = () => {
         setSplitType={setSplitType}
         phase={phase}
         setPhase={setPhase}
+        handleSubmitForm={handleSubmitForm}
+        handleTotalAmountOfBillChange={handleTotalAmountOfBillChange}
       />
     );
   } else if (phase == "result" && splitType == "even") {
-    return <EvenResult />;
+    return (
+      <EvenResult
+        participants={participants}
+        totalAmountOfBill={totalAmountOfBill}
+        setPhase={setPhase}
+      />
+    );
   } else if (phase == "result" && splitType == "russianRoulette") {
-    return <RussianResult />;
+    return (
+      <RussianResult
+        participants={participants}
+        totalAmountOfBill={totalAmountOfBill}
+        setPhase={setPhase}
+      />
+    );
   }
 };
 

@@ -8536,11 +8536,6 @@ var CreationForm = function CreationForm(props) {
     props.setSplitType(event.target.value);
   };
 
-  var handleSubmitForm = function handleSubmitForm(event) {
-    event.preventDefault;
-    props.setPhase("result");
-  };
-
   var NumOfPeopleArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
     className: "form"
@@ -8568,7 +8563,8 @@ var CreationForm = function CreationForm(props) {
   }, "Total Amount"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     type: "text",
     name: "totalAmount",
-    id: "totalAmount"
+    id: "totalAmount",
+    onChange: props.handleTotalAmountOfBillChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
     htmlFor: "splitType"
   }, "Split type"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
@@ -8611,7 +8607,7 @@ var CreationForm = function CreationForm(props) {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     className: "submitButton",
     onClick: function onClick(event) {
-      return handleSubmitForm(event);
+      return props.handleSubmitForm(event);
     }
   }, "Submit!"));
 };
@@ -8663,17 +8659,56 @@ var CreationPage = function CreationPage() {
       phase = _useState4[0],
       setPhase = _useState4[1];
 
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      participants = _useState6[0],
+      setParticipants = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState8 = _slicedToArray(_useState7, 2),
+      totalAmountOfBill = _useState8[0],
+      setTotalAmountOfBill = _useState8[1];
+
+  var handleTotalAmountOfBillChange = function handleTotalAmountOfBillChange(event) {
+    setTotalAmountOfBill(event.target.value);
+  };
+
+  var handleSubmitForm = function handleSubmitForm(event) {
+    event.preventDefault;
+    setPhase("result");
+    var participantInputs = document.querySelectorAll(".participantInput");
+    var temporaryParticipantsArr = [];
+
+    for (var i = 0; i < participantInputs.length; i++) {
+      var participant = participantInputs[i].value;
+      console.log(participant);
+      temporaryParticipantsArr.push(participant);
+    }
+
+    setParticipants(temporaryParticipantsArr);
+  };
+
   if (phase == "input") {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CreationForm__WEBPACK_IMPORTED_MODULE_1__["default"], {
       splitType: splitType,
       setSplitType: setSplitType,
       phase: phase,
-      setPhase: setPhase
+      setPhase: setPhase,
+      handleSubmitForm: handleSubmitForm,
+      handleTotalAmountOfBillChange: handleTotalAmountOfBillChange
     });
   } else if (phase == "result" && splitType == "even") {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_EvenResult__WEBPACK_IMPORTED_MODULE_2__["default"], null);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_EvenResult__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      participants: participants,
+      totalAmountOfBill: totalAmountOfBill,
+      setPhase: setPhase
+    });
   } else if (phase == "result" && splitType == "russianRoulette") {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RussianResult__WEBPACK_IMPORTED_MODULE_3__["default"], null);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RussianResult__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      participants: participants,
+      totalAmountOfBill: totalAmountOfBill,
+      setPhase: setPhase
+    });
   }
 };
 
@@ -8695,8 +8730,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 
-var EvenResult = function EvenResult() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Even Result");
+var EvenResult = function EvenResult(props) {
+  var saveResultAndGoBack = function saveResultAndGoBack(event) {
+    props.setPhase("input");
+  };
+
+  var costPerPerson = props.totalAmountOfBill / props.participants.length;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "even-result"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Even Result"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Everyone Will Pay $", costPerPerson, "."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: function onClick(event) {
+      return saveResultAndGoBack(event);
+    }
+  }, "Save Result and Go Back"));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EvenResult);
@@ -8766,7 +8812,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var RussianResult = function RussianResult() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Russian Result");
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "russian-result"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Russian Result"));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RussianResult);
@@ -8792,7 +8840,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "h1 {\n  text-align: center;\n  margin-bottom: 50px;\n}\n\ndiv#buttonWrapper {\n  width: 50%;\n  margin: 50px auto;\n}\n\ndiv.history {\n  width: 50%;\n  width: 50%;\n  margin: 0 auto;\n}\n\nform.form {\n  width: 50%;\n  margin: 0 auto;\n}\n\nform.form section#firstSection {\n  display: grid;\n  grid-template-columns: 2fr 3fr;\n}\n\nform.form section#firstSection input,\nform.form section#firstSection textarea,\nform.form section#firstSection select {\n  margin-bottom: 40px;\n}\n\nform.form section#firstSection span {\n  font-size: 0.8rem;\n  margin-left: 10px;\n}\n\nform.form section#firstSection input#date {\n  width: 50%;\n}\n\nform.form section#firstSection input#peopleNum {\n  width: 20%;\n}\n\nform.form section#firstSection select#splitType,\nform.form section#firstSection input#totalAmount {\n  width: 40%;\n}\n\nform.form section#secondSection {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n}\n\nform.form section#secondSection .participantLabel {\n  margin-right: 10px;\n}\n\nform.form section#secondSection .participantInput {\n  margin-bottom: 20px;\n}\n\nform.form button.submitButton {\n  margin-top: 30px;\n}\n/*# sourceMappingURL=style.css.map */", "",{"version":3,"sources":["webpack://./src/sass/style.scss","webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,kBAAkB;EAClB,mBAAmB;ACCrB;;ADEA;EACE,UAAU;EACV,iBAAiB;ACCnB;;ADEA;EACE,UAAU;EACV,UAAU;EACV,cAAc;ACChB;;ADEA;EACE,UAAU;EACV,cAAc;ACChB;;ADHA;EAII,aAAa;EACb,8BAA8B;ACGlC;;ADRA;;;EASM,mBAAmB;ACKzB;;ADdA;EAYM,iBAAiB;EACjB,iBAAiB;ACMvB;;ADnBA;EAiBM,UAAU;ACMhB;;ADvBA;EAoBM,UAAU;ACOhB;;AD3BA;;EAwBM,UAAU;ACQhB;;ADhCA;EA4BI,aAAa;EACb,8BAA8B;ACQlC;;ADrCA;EA+BM,kBAAkB;ACUxB;;ADzCA;EAkCM,mBAAmB;ACWzB;;AD7CA;EAsCI,gBAAgB;ACWpB;AACA,oCAAoC","sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "h1 {\n  text-align: center;\n  margin-bottom: 50px;\n}\n\ndiv#buttonWrapper {\n  width: 50%;\n  margin: 50px auto;\n}\n\ndiv.history,\ndiv.russian-result,\ndiv.even-result {\n  width: 50%;\n  margin: 0 auto;\n}\n\nform.form {\n  width: 50%;\n  margin: 0 auto;\n}\n\nform.form section#firstSection {\n  display: grid;\n  grid-template-columns: 2fr 3fr;\n}\n\nform.form section#firstSection input,\nform.form section#firstSection textarea,\nform.form section#firstSection select {\n  margin-bottom: 40px;\n}\n\nform.form section#firstSection span {\n  font-size: 0.8rem;\n  margin-left: 10px;\n}\n\nform.form section#firstSection input#date {\n  width: 50%;\n}\n\nform.form section#firstSection input#peopleNum {\n  width: 20%;\n}\n\nform.form section#firstSection select#splitType,\nform.form section#firstSection input#totalAmount {\n  width: 40%;\n}\n\nform.form section#secondSection {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n}\n\nform.form section#secondSection .participantLabel {\n  margin-right: 10px;\n}\n\nform.form section#secondSection .participantInput {\n  margin-bottom: 20px;\n}\n\nform.form button.submitButton {\n  margin-top: 30px;\n}\n/*# sourceMappingURL=style.css.map */", "",{"version":3,"sources":["webpack://./src/sass/style.scss","webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,kBAAkB;EAClB,mBAAmB;ACCrB;;ADEA;EACE,UAAU;EACV,iBAAiB;ACCnB;;ADEA;;;EAGE,UAAU;EACV,cAAc;ACChB;;ADEA;EACE,UAAU;EACV,cAAc;ACChB;;ADHA;EAII,aAAa;EACb,8BAA8B;ACGlC;;ADRA;;;EASM,mBAAmB;ACKzB;;ADdA;EAYM,iBAAiB;EACjB,iBAAiB;ACMvB;;ADnBA;EAiBM,UAAU;ACMhB;;ADvBA;EAoBM,UAAU;ACOhB;;AD3BA;;EAwBM,UAAU;ACQhB;;ADhCA;EA4BI,aAAa;EACb,8BAA8B;ACQlC;;ADrCA;EA+BM,kBAAkB;ACUxB;;ADzCA;EAkCM,mBAAmB;ACWzB;;AD7CA;EAsCI,gBAAgB;ACWpB;AACA,oCAAoC","sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

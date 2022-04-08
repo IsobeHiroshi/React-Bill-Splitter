@@ -8,8 +8,9 @@ div#buttonWrapper {
   margin: 50px auto;
 }
 
-div.history {
-  width: 50%;
+div.history,
+div.russian-result,
+div.even-result {
   width: 50%;
   margin: 0 auto;
 }

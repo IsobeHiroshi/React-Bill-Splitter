@@ -10,11 +10,6 @@ const CreationForm = (props) => {
     props.setSplitType(event.target.value);
   };
 
-  const handleSubmitForm = (event) => {
-    event.preventDefault;
-    props.setPhase("result");
-  };
-
   const NumOfPeopleArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
@@ -32,7 +27,12 @@ const CreationForm = (props) => {
           rows="5"
         ></textarea>
         <label htmlFor="totalAmount">Total Amount</label>
-        <input type="text" name="totalAmount" id="totalAmount" />
+        <input
+          type="text"
+          name="totalAmount"
+          id="totalAmount"
+          onChange={props.handleTotalAmountOfBillChange}
+        />
         <label htmlFor="splitType">Split type</label>
         <select
           name="splitType"
@@ -76,7 +76,7 @@ const CreationForm = (props) => {
       </section>
       <button
         className="submitButton"
-        onClick={(event) => handleSubmitForm(event)}
+        onClick={(event) => props.handleSubmitForm(event)}
       >
         Submit!
       </button>

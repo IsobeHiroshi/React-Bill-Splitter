@@ -1,6 +1,10 @@
 import React from "react";
 const RussianResult = () => {
-  return <h2>Russian Result</h2>;
+  return (
+    <div className="russian-result">
+      <h2>Russian Result</h2>
+    </div>
+  );
 };
 
 export default RussianResult;
