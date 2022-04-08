@@ -8653,11 +8653,15 @@ var CreationPage = function CreationPage() {
       _useState2 = _slicedToArray(_useState, 2),
       splitType = _useState2[0],
       setSplitType = _useState2[1];
+  /* Phase will ba either "input" or "result," based on which the form component or the result component is rendered */
+
 
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("input"),
       _useState4 = _slicedToArray(_useState3, 2),
       phase = _useState4[0],
       setPhase = _useState4[1];
+  /* Participants and totalAmountOfBill is taken from the CreationForm inputs */
+
 
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState6 = _slicedToArray(_useState5, 2),
@@ -8672,6 +8676,8 @@ var CreationPage = function CreationPage() {
   var handleTotalAmountOfBillChange = function handleTotalAmountOfBillChange(event) {
     setTotalAmountOfBill(event.target.value);
   };
+  /* Reset the state when saving the result */
+
 
   var saveResultAndGoBack = function saveResultAndGoBack(event) {
     setPhase("input");
@@ -8683,15 +8689,21 @@ var CreationPage = function CreationPage() {
     event.preventDefault;
     setPhase("result");
     var participantInputs = document.querySelectorAll(".participantInput");
+    /* Once store the participants in a temporary array */
+
     var temporaryParticipantsArr = [];
 
     for (var i = 0; i < participantInputs.length; i++) {
       var participant = participantInputs[i].value;
       temporaryParticipantsArr.push(participant);
     }
+    /* Set the temporary array to participants state */
+
 
     setParticipants(temporaryParticipantsArr);
   };
+  /* Render different components based on the phase and splitType */
+
 
   if (phase == "input") {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CreationForm__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -8815,6 +8827,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var RussianResult = function RussianResult(props) {
+  // Generate a random number to pick a payer randomly
   var randomNum = Math.floor(Math.random() * props.participants.length + 1);
   var billPayer = props.participants[randomNum];
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
