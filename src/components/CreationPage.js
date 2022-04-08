@@ -13,6 +13,12 @@ const CreationPage = () => {
     setTotalAmountOfBill(event.target.value);
   };
 
+  const saveResultAndGoBack = (event) => {
+    setPhase("input");
+    setParticipants([]);
+    setTotalAmountOfBill(0);
+  };
+
   const handleSubmitForm = (event) => {
     event.preventDefault;
     setPhase("result");
@@ -20,7 +26,6 @@ const CreationPage = () => {
     let temporaryParticipantsArr = [];
     for (let i = 0; i < participantInputs.length; i++) {
       let participant = participantInputs[i].value;
-      console.log(participant);
       temporaryParticipantsArr.push(participant);
     }
     setParticipants(temporaryParticipantsArr);
@@ -43,6 +48,7 @@ const CreationPage = () => {
         participants={participants}
         totalAmountOfBill={totalAmountOfBill}
         setPhase={setPhase}
+        saveResultAndGoBack={saveResultAndGoBack}
       />
     );
   } else if (phase == "result" && splitType == "russianRoulette") {
@@ -51,6 +57,7 @@ const CreationPage = () => {
         participants={participants}
         totalAmountOfBill={totalAmountOfBill}
         setPhase={setPhase}
+        saveResultAndGoBack={saveResultAndGoBack}
       />
     );
   }

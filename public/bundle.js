@@ -8673,6 +8673,12 @@ var CreationPage = function CreationPage() {
     setTotalAmountOfBill(event.target.value);
   };
 
+  var saveResultAndGoBack = function saveResultAndGoBack(event) {
+    setPhase("input");
+    setParticipants([]);
+    setTotalAmountOfBill(0);
+  };
+
   var handleSubmitForm = function handleSubmitForm(event) {
     event.preventDefault;
     setPhase("result");
@@ -8681,7 +8687,6 @@ var CreationPage = function CreationPage() {
 
     for (var i = 0; i < participantInputs.length; i++) {
       var participant = participantInputs[i].value;
-      console.log(participant);
       temporaryParticipantsArr.push(participant);
     }
 
@@ -8701,13 +8706,15 @@ var CreationPage = function CreationPage() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_EvenResult__WEBPACK_IMPORTED_MODULE_2__["default"], {
       participants: participants,
       totalAmountOfBill: totalAmountOfBill,
-      setPhase: setPhase
+      setPhase: setPhase,
+      saveResultAndGoBack: saveResultAndGoBack
     });
   } else if (phase == "result" && splitType == "russianRoulette") {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RussianResult__WEBPACK_IMPORTED_MODULE_3__["default"], {
       participants: participants,
       totalAmountOfBill: totalAmountOfBill,
-      setPhase: setPhase
+      setPhase: setPhase,
+      saveResultAndGoBack: saveResultAndGoBack
     });
   }
 };
@@ -8731,16 +8738,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var EvenResult = function EvenResult(props) {
-  var saveResultAndGoBack = function saveResultAndGoBack(event) {
-    props.setPhase("input");
-  };
-
   var costPerPerson = props.totalAmountOfBill / props.participants.length;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "even-result"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Even Result"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Everyone Will Pay $", costPerPerson, "."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     onClick: function onClick(event) {
-      return saveResultAndGoBack(event);
+      return props.saveResultAndGoBack(event);
     }
   }, "Save Result and Go Back"));
 };
@@ -8811,10 +8814,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 
-var RussianResult = function RussianResult() {
+var RussianResult = function RussianResult(props) {
+  var randomNum = Math.floor(Math.random() * props.participants.length + 1);
+  var billPayer = props.participants[randomNum];
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "russian-result"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Russian Result"));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Russian Result"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, billPayer, " Will Pay $", props.totalAmountOfBill, "!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: function onClick(event) {
+      return props.saveResultAndGoBack(event);
+    }
+  }, "Save Result and Go Back"));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RussianResult);
