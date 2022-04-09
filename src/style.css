@@ -15,54 +15,54 @@ div.even-result {
   margin: 0 auto;
 }
 
-form.form {
+div.creation-form {
   width: 50%;
   margin: 0 auto;
 }
 
-form.form section#firstSection {
+div.creation-form section#firstSection {
   display: grid;
   grid-template-columns: 2fr 3fr;
 }
 
-form.form section#firstSection input,
-form.form section#firstSection textarea,
-form.form section#firstSection select {
+div.creation-form section#firstSection input,
+div.creation-form section#firstSection textarea,
+div.creation-form section#firstSection select {
   margin-bottom: 40px;
 }
 
-form.form section#firstSection span {
+div.creation-form section#firstSection span {
   font-size: 0.8rem;
   margin-left: 10px;
 }
 
-form.form section#firstSection input#date {
+div.creation-form section#firstSection input#date {
   width: 50%;
 }
 
-form.form section#firstSection input#peopleNum {
+div.creation-form section#firstSection input#peopleNum {
   width: 20%;
 }
 
-form.form section#firstSection select#splitType,
-form.form section#firstSection input#totalAmount {
+div.creation-form section#firstSection select#splitType,
+div.creation-form section#firstSection input#totalAmount {
   width: 40%;
 }
 
-form.form section#secondSection {
+div.creation-form section#secondSection {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
-form.form section#secondSection .participantLabel {
+div.creation-form section#secondSection .participantLabel {
   margin-right: 10px;
 }
 
-form.form section#secondSection .participantInput {
+div.creation-form section#secondSection .participantInput {
   margin-bottom: 20px;
 }
 
-form.form button.submitButton {
+div.creation-form button.submitButton {
   margin-top: 30px;
 }
 /*# sourceMappingURL=style.css.map */

@@ -8536,35 +8536,62 @@ var CreationForm = function CreationForm(props) {
     props.setSplitType(event.target.value);
   };
 
+  var handleDateChange = function handleDateChange(event) {
+    props.setDate(event.target.value);
+  };
+
+  var handleTitleChange = function handleTitleChange(event) {
+    props.setTitle(event.target.value);
+  };
+
+  var handleDescChange = function handleDescChange(event) {
+    props.setDescription(event.target.value);
+  };
+
+  var handleTotalAmountOfBillChange = function handleTotalAmountOfBillChange(event) {
+    props.setTotalAmountOfBill(event.target.value);
+  };
+
   var NumOfPeopleArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
-    className: "form"
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "creation-form"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
     id: "firstSection"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
-    htmlFor: ""
+    htmlFor: "date"
   }, "Date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     type: "date",
     name: "date",
-    id: "date"
+    id: "date",
+    onChange: function onChange(event) {
+      return handleDateChange(event);
+    }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
     htmlFor: "title"
   }, "Title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     type: "text",
     name: "title",
-    id: "title"
+    id: "title",
+    onChange: function onChange(event) {
+      return handleTitleChange(event);
+    }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Description"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("textarea", {
     name: "description",
     id: "description",
     cols: "30",
-    rows: "5"
+    rows: "5",
+    onChange: function onChange(event) {
+      return handleDescChange(event);
+    }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
     htmlFor: "totalAmount"
   }, "Total Amount"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     type: "text",
     name: "totalAmount",
     id: "totalAmount",
-    onChange: props.handleTotalAmountOfBillChange
+    onChange: function onChange(event) {
+      return handleTotalAmountOfBillChange(event);
+    }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
     htmlFor: "splitType"
   }, "Split type"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
@@ -8667,20 +8694,44 @@ var CreationPage = function CreationPage() {
       _useState6 = _slicedToArray(_useState5, 2),
       participants = _useState6[0],
       setParticipants = _useState6[1];
+  /* States for form change handler in CreationForm.js */
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
       _useState8 = _slicedToArray(_useState7, 2),
       totalAmountOfBill = _useState8[0],
       setTotalAmountOfBill = _useState8[1];
 
-  var handleTotalAmountOfBillChange = function handleTotalAmountOfBillChange(event) {
-    setTotalAmountOfBill(event.target.value);
-  };
-  /* Reset the state when saving the result */
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
+      _useState10 = _slicedToArray(_useState9, 2),
+      date = _useState10[0],
+      setDate = _useState10[1];
 
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
+      _useState12 = _slicedToArray(_useState11, 2),
+      title = _useState12[0],
+      setTitle = _useState12[1];
 
-  var saveResultAndGoBack = function saveResultAndGoBack(event) {
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
+      _useState14 = _slicedToArray(_useState13, 2),
+      description = _useState14[0],
+      setDescription = _useState14[1];
+
+  var saveResultAndGoBack = function saveResultAndGoBack(event, payer) {
+    var splitData = {
+      date: date,
+      splitType: splitType,
+      participants: participants,
+      title: title,
+      description: description,
+      totalAmountOfBill: totalAmountOfBill,
+      payer: payer
+    };
+    console.log(splitData);
+    /* Reset the state when saving the result */
+
     setPhase("input");
+    setSplitType("even");
     setParticipants([]);
     setTotalAmountOfBill(0);
   };
@@ -8711,8 +8762,11 @@ var CreationPage = function CreationPage() {
       setSplitType: setSplitType,
       phase: phase,
       setPhase: setPhase,
+      setDate: setDate,
+      setTitle: setTitle,
+      setDescription: setDescription,
       handleSubmitForm: handleSubmitForm,
-      handleTotalAmountOfBillChange: handleTotalAmountOfBillChange
+      setTotalAmountOfBill: setTotalAmountOfBill
     });
   } else if (phase == "result" && splitType == "even") {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_EvenResult__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -8755,7 +8809,7 @@ var EvenResult = function EvenResult(props) {
     className: "even-result"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Even Result"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Everyone Will Pay $", costPerPerson, "."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     onClick: function onClick(event) {
-      return props.saveResultAndGoBack(event);
+      return props.saveResultAndGoBack(event, "everyone");
     }
   }, "Save Result and Go Back"));
 };
@@ -8824,19 +8878,51 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 var RussianResult = function RussianResult(props) {
   // Generate a random number to pick a payer randomly
   var randomNum = Math.floor(Math.random() * props.participants.length + 1);
   var billPayer = props.participants[randomNum];
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "russian-result"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Russian Result"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, billPayer, " Will Pay $", props.totalAmountOfBill, "!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    onClick: function onClick(event) {
-      return props.saveResultAndGoBack(event);
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+      _useState2 = _slicedToArray(_useState, 2),
+      isLoading = _useState2[0],
+      setIsLoading = _useState2[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (billPayer == undefined) {
+      setIsLoading(true);
+    } else {
+      setIsLoading(false);
     }
-  }, "Save Result and Go Back"));
+  }, [billPayer]);
+
+  if (isLoading) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "russian-result"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Loading..."));
+  } else {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "russian-result"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Russian Result"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, billPayer, " Will Pay $", props.totalAmountOfBill, "!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      onClick: function onClick(event) {
+        props.saveResultAndGoBack(event, billPayer);
+      }
+    }, "Save Result and Go Back"));
+  }
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RussianResult);
@@ -8862,7 +8948,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "h1 {\n  text-align: center;\n  margin-bottom: 50px;\n}\n\ndiv#buttonWrapper {\n  width: 50%;\n  margin: 50px auto;\n}\n\ndiv.history,\ndiv.russian-result,\ndiv.even-result {\n  width: 50%;\n  margin: 0 auto;\n}\n\nform.form {\n  width: 50%;\n  margin: 0 auto;\n}\n\nform.form section#firstSection {\n  display: grid;\n  grid-template-columns: 2fr 3fr;\n}\n\nform.form section#firstSection input,\nform.form section#firstSection textarea,\nform.form section#firstSection select {\n  margin-bottom: 40px;\n}\n\nform.form section#firstSection span {\n  font-size: 0.8rem;\n  margin-left: 10px;\n}\n\nform.form section#firstSection input#date {\n  width: 50%;\n}\n\nform.form section#firstSection input#peopleNum {\n  width: 20%;\n}\n\nform.form section#firstSection select#splitType,\nform.form section#firstSection input#totalAmount {\n  width: 40%;\n}\n\nform.form section#secondSection {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n}\n\nform.form section#secondSection .participantLabel {\n  margin-right: 10px;\n}\n\nform.form section#secondSection .participantInput {\n  margin-bottom: 20px;\n}\n\nform.form button.submitButton {\n  margin-top: 30px;\n}\n/*# sourceMappingURL=style.css.map */", "",{"version":3,"sources":["webpack://./src/sass/style.scss","webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,kBAAkB;EAClB,mBAAmB;ACCrB;;ADEA;EACE,UAAU;EACV,iBAAiB;ACCnB;;ADEA;;;EAGE,UAAU;EACV,cAAc;ACChB;;ADEA;EACE,UAAU;EACV,cAAc;ACChB;;ADHA;EAII,aAAa;EACb,8BAA8B;ACGlC;;ADRA;;;EASM,mBAAmB;ACKzB;;ADdA;EAYM,iBAAiB;EACjB,iBAAiB;ACMvB;;ADnBA;EAiBM,UAAU;ACMhB;;ADvBA;EAoBM,UAAU;ACOhB;;AD3BA;;EAwBM,UAAU;ACQhB;;ADhCA;EA4BI,aAAa;EACb,8BAA8B;ACQlC;;ADrCA;EA+BM,kBAAkB;ACUxB;;ADzCA;EAkCM,mBAAmB;ACWzB;;AD7CA;EAsCI,gBAAgB;ACWpB;AACA,oCAAoC","sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "h1 {\n  text-align: center;\n  margin-bottom: 50px;\n}\n\ndiv#buttonWrapper {\n  width: 50%;\n  margin: 50px auto;\n}\n\ndiv.history,\ndiv.russian-result,\ndiv.even-result {\n  width: 50%;\n  margin: 0 auto;\n}\n\ndiv.creation-form {\n  width: 50%;\n  margin: 0 auto;\n}\n\ndiv.creation-form section#firstSection {\n  display: grid;\n  grid-template-columns: 2fr 3fr;\n}\n\ndiv.creation-form section#firstSection input,\ndiv.creation-form section#firstSection textarea,\ndiv.creation-form section#firstSection select {\n  margin-bottom: 40px;\n}\n\ndiv.creation-form section#firstSection span {\n  font-size: 0.8rem;\n  margin-left: 10px;\n}\n\ndiv.creation-form section#firstSection input#date {\n  width: 50%;\n}\n\ndiv.creation-form section#firstSection input#peopleNum {\n  width: 20%;\n}\n\ndiv.creation-form section#firstSection select#splitType,\ndiv.creation-form section#firstSection input#totalAmount {\n  width: 40%;\n}\n\ndiv.creation-form section#secondSection {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n}\n\ndiv.creation-form section#secondSection .participantLabel {\n  margin-right: 10px;\n}\n\ndiv.creation-form section#secondSection .participantInput {\n  margin-bottom: 20px;\n}\n\ndiv.creation-form button.submitButton {\n  margin-top: 30px;\n}\n/*# sourceMappingURL=style.css.map */", "",{"version":3,"sources":["webpack://./src/sass/style.scss","webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,kBAAkB;EAClB,mBAAmB;ACCrB;;ADEA;EACE,UAAU;EACV,iBAAiB;ACCnB;;ADEA;;;EAGE,UAAU;EACV,cAAc;ACChB;;ADEA;EACE,UAAU;EACV,cAAc;ACChB;;ADHA;EAII,aAAa;EACb,8BAA8B;ACGlC;;ADRA;;;EASM,mBAAmB;ACKzB;;ADdA;EAYM,iBAAiB;EACjB,iBAAiB;ACMvB;;ADnBA;EAiBM,UAAU;ACMhB;;ADvBA;EAoBM,UAAU;ACOhB;;AD3BA;;EAwBM,UAAU;ACQhB;;ADhCA;EA4BI,aAAa;EACb,8BAA8B;ACQlC;;ADrCA;EA+BM,kBAAkB;ACUxB;;ADzCA;EAkCM,mBAAmB;ACWzB;;AD7CA;EAsCI,gBAAgB;ACWpB;AACA,oCAAoC","sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

@@ -10,28 +10,55 @@ const CreationForm = (props) => {
     props.setSplitType(event.target.value);
   };
 
+  const handleDateChange = (event) => {
+    props.setDate(event.target.value);
+  };
+
+  const handleTitleChange = (event) => {
+    props.setTitle(event.target.value);
+  };
+
+  const handleDescChange = (event) => {
+    props.setDescription(event.target.value);
+  };
+
+  const handleTotalAmountOfBillChange = (event) => {
+    props.setTotalAmountOfBill(event.target.value);
+  };
+
   const NumOfPeopleArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
-    <form className="form">
+    <div className="creation-form">
       <section id="firstSection">
-        <label htmlFor="">Date</label>
-        <input type="date" name="date" id="date" />
+        <label htmlFor="date">Date</label>
+        <input
+          type="date"
+          name="date"
+          id="date"
+          onChange={(event) => handleDateChange(event)}
+        />
         <label htmlFor="title">Title</label>
-        <input type="text" name="title" id="title" />
+        <input
+          type="text"
+          name="title"
+          id="title"
+          onChange={(event) => handleTitleChange(event)}
+        />
         <label>Description</label>
         <textarea
           name="description"
           id="description"
           cols="30"
           rows="5"
+          onChange={(event) => handleDescChange(event)}
         ></textarea>
         <label htmlFor="totalAmount">Total Amount</label>
         <input
           type="text"
           name="totalAmount"
           id="totalAmount"
-          onChange={props.handleTotalAmountOfBillChange}
+          onChange={(event) => handleTotalAmountOfBillChange(event)}
         />
         <label htmlFor="splitType">Split type</label>
         <select
@@ -80,7 +107,7 @@ const CreationForm = (props) => {
       >
         Submit!
       </button>
-    </form>
+    </div>
   );
 };
 

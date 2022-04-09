@@ -7,7 +7,7 @@ const EvenResult = (props) => {
       <h2>Even Result</h2>
       <p>Everyone Will Pay ${costPerPerson}.</p>
       {/* saveResultAndGoBack() is declared in CreationPage.js */}
-      <button onClick={(event) => props.saveResultAndGoBack(event)}>
+      <button onClick={(event) => props.saveResultAndGoBack(event, "everyone")}>
         Save Result and Go Back
       </button>
     </div>
