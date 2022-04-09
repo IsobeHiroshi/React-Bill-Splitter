@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import CreationForm from "./CreationForm";
 import EvenResult from "./EvenResult";
 import RussianResult from "./RussianResult";
+import axios from "axios";
 
 const CreationPage = () => {
   const [splitType, setSplitType] = useState("even");
@@ -28,7 +29,10 @@ const CreationPage = () => {
       totalAmountOfBill: totalAmountOfBill,
       payer: payer,
     };
-    console.log(splitData);
+    axios
+      .post("/api/v1/splitData", splitData)
+      .catch((error) => console.log(error));
+
     /* Reset the state when saving the result */
     setPhase("input");
     setSplitType("even");

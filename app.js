@@ -14,6 +14,5 @@ mongoose.connect(mongoDB).then(() => {
   const server = app.listen(8080, () => console.log("listening"));
 });
 
-/* const router = require("./routes/index");
+const router = require("./routes/index.js");
 app.use("/api/v1", router);
- */
