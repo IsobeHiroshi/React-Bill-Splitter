@@ -1,16 +1,8 @@
-import React, { useState, useEffect } from "react";
-
-const useDelay = (msec) => {
-  const [waiting, setWaiting] = useState(true);
-  useEffect(() => {
-    setTimeout(() => setWaiting(false), msec);
-  }, []);
-  return waiting;
-};
+import React from "react";
 
 const EvenResult = (props) => {
   const costPerPerson = props.totalAmountOfBill / props.participants.length;
-  const waiting = useDelay(1500);
+  const waiting = props.useDelay(1500);
 
   return (
     <>

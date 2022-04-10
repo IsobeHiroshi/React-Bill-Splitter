@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CreationForm from "./CreationForm";
 import EvenResult from "./EvenResult";
 import RussianResult from "./RussianResult";
@@ -95,6 +95,14 @@ const CreationPage = () => {
     setDate("");
   };
 
+  const useDelay = (msec) => {
+    const [waiting, setWaiting] = useState(true);
+    useEffect(() => {
+      setTimeout(() => setWaiting(false), msec);
+    }, []);
+    return waiting;
+  };
+
   /* Render different components based on the phase and splitType */
   if (phase == "input") {
     return (
@@ -118,6 +126,7 @@ const CreationPage = () => {
         setPhase={setPhase}
         saveResultAndGoBack={saveResultAndGoBack}
         dontSaveResultAndGoBack={dontSaveResultAndGoBack}
+        useDelay={useDelay}
       />
     );
   } else if (phase == "result" && splitType == "russianRoulette") {
@@ -128,6 +137,7 @@ const CreationPage = () => {
         setPhase={setPhase}
         saveResultAndGoBack={saveResultAndGoBack}
         dontSaveResultAndGoBack={dontSaveResultAndGoBack}
+        useDelay={useDelay}
       />
     );
   }
