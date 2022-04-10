@@ -45,6 +45,24 @@ div.even-result button {
   margin-bottom: 20px;
 }
 
+div.russian-result p.russian-payer {
+  color: red;
+  animation-name: magnifyingStart;
+  animation-duration: 1s;
+}
+
+@keyframes magnifyingStart {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 div.creation-form {
   width: 50%;
   margin: 0 auto;
