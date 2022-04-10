@@ -10677,7 +10677,8 @@ var CreationForm = function CreationForm(props) {
 
   var NumOfPeopleArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "creation-form"
+    className: "creation-form",
+    id: "creationForm"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
     id: "firstSection"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
@@ -10867,9 +10868,17 @@ var CreationPage = function CreationPage() {
       totalAmountOfBill: parseInt(totalAmountOfBill)
     };
     axios__WEBPACK_IMPORTED_MODULE_4___default().post("/api/v1/splitDataTest", splitData).then(function (result) {
-      return console.log(result.data);
-    }).then(function (result) {
-      return setPhase("result");
+      if (result.data.errors) {
+        for (var _i2 = 0; _i2 < result.data.errors.length; _i2++) {
+          var formElement = document.getElementById("creationForm");
+          var errorMessage = document.createElement("p");
+          errorMessage.classList.add("error-message");
+          errorMessage.innerHTML = result.data.errors[_i2].message;
+          formElement.appendChild(errorMessage);
+        }
+      } else {
+        setPhase("result");
+      }
     })["catch"](function (error) {
       return console.log(error);
     });
@@ -11100,7 +11109,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "h1 {\n  text-align: center;\n  margin-bottom: 50px;\n}\n\ndiv#buttonWrapper {\n  width: 50%;\n  margin: 50px auto;\n}\n\ndiv.history,\ndiv.russian-result,\ndiv.even-result {\n  width: 50%;\n  margin: 0 auto;\n}\n\ndiv.creation-form {\n  width: 50%;\n  margin: 0 auto;\n}\n\ndiv.creation-form section#firstSection {\n  display: grid;\n  grid-template-columns: 2fr 3fr;\n}\n\ndiv.creation-form section#firstSection input,\ndiv.creation-form section#firstSection textarea,\ndiv.creation-form section#firstSection select {\n  margin-bottom: 40px;\n}\n\ndiv.creation-form section#firstSection span {\n  font-size: 0.8rem;\n  margin-left: 10px;\n}\n\ndiv.creation-form section#firstSection input#date {\n  width: 50%;\n}\n\ndiv.creation-form section#firstSection input#peopleNum {\n  width: 20%;\n}\n\ndiv.creation-form section#firstSection select#splitType,\ndiv.creation-form section#firstSection input#totalAmount {\n  width: 40%;\n}\n\ndiv.creation-form section#secondSection {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n}\n\ndiv.creation-form section#secondSection .participantLabel {\n  margin-right: 10px;\n}\n\ndiv.creation-form section#secondSection .participantInput {\n  margin-bottom: 20px;\n}\n\ndiv.creation-form button.submitButton {\n  margin-top: 30px;\n}\n/*# sourceMappingURL=style.css.map */", "",{"version":3,"sources":["webpack://./src/sass/style.scss","webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,kBAAkB;EAClB,mBAAmB;ACCrB;;ADEA;EACE,UAAU;EACV,iBAAiB;ACCnB;;ADEA;;;EAGE,UAAU;EACV,cAAc;ACChB;;ADEA;EACE,UAAU;EACV,cAAc;ACChB;;ADHA;EAII,aAAa;EACb,8BAA8B;ACGlC;;ADRA;;;EASM,mBAAmB;ACKzB;;ADdA;EAYM,iBAAiB;EACjB,iBAAiB;ACMvB;;ADnBA;EAiBM,UAAU;ACMhB;;ADvBA;EAoBM,UAAU;ACOhB;;AD3BA;;EAwBM,UAAU;ACQhB;;ADhCA;EA4BI,aAAa;EACb,8BAA8B;ACQlC;;ADrCA;EA+BM,kBAAkB;ACUxB;;ADzCA;EAkCM,mBAAmB;ACWzB;;AD7CA;EAsCI,gBAAgB;ACWpB;AACA,oCAAoC","sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "h1 {\n  text-align: center;\n  margin-bottom: 50px;\n}\n\ndiv#buttonWrapper {\n  width: 50%;\n  margin: 50px auto;\n}\n\ndiv.history,\ndiv.russian-result,\ndiv.even-result {\n  width: 50%;\n  margin: 0 auto;\n}\n\ndiv.creation-form {\n  width: 50%;\n  margin: 0 auto;\n}\n\ndiv.creation-form section#firstSection {\n  display: grid;\n  grid-template-columns: 2fr 3fr;\n}\n\ndiv.creation-form section#firstSection input,\ndiv.creation-form section#firstSection textarea,\ndiv.creation-form section#firstSection select {\n  margin-bottom: 40px;\n}\n\ndiv.creation-form section#firstSection span {\n  font-size: 0.8rem;\n  margin-left: 10px;\n}\n\ndiv.creation-form section#firstSection input#date {\n  width: 50%;\n}\n\ndiv.creation-form section#firstSection input#peopleNum {\n  width: 20%;\n}\n\ndiv.creation-form section#firstSection select#splitType,\ndiv.creation-form section#firstSection input#totalAmount {\n  width: 40%;\n}\n\ndiv.creation-form section#secondSection {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n}\n\ndiv.creation-form section#secondSection .participantLabel {\n  margin-right: 10px;\n}\n\ndiv.creation-form section#secondSection .participantInput {\n  margin-bottom: 20px;\n}\n\ndiv.creation-form p.error-message {\n  color: red;\n}\n\ndiv.creation-form button.submitButton {\n  margin: 30px 0;\n}\n/*# sourceMappingURL=style.css.map */", "",{"version":3,"sources":["webpack://./src/sass/style.scss","webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,kBAAkB;EAClB,mBAAmB;ACCrB;;ADEA;EACE,UAAU;EACV,iBAAiB;ACCnB;;ADEA;;;EAGE,UAAU;EACV,cAAc;ACChB;;ADEA;EACE,UAAU;EACV,cAAc;ACChB;;ADHA;EAII,aAAa;EACb,8BAA8B;ACGlC;;ADRA;;;EASM,mBAAmB;ACKzB;;ADdA;EAYM,iBAAiB;EACjB,iBAAiB;ACMvB;;ADnBA;EAiBM,UAAU;ACMhB;;ADvBA;EAoBM,UAAU;ACOhB;;AD3BA;;EAwBM,UAAU;ACQhB;;ADhCA;EA4BI,aAAa;EACb,8BAA8B;ACQlC;;ADrCA;EA+BM,kBAAkB;ACUxB;;ADzCA;EAkCM,mBAAmB;ACWzB;;AD7CA;EAsCI,UAAU;ACWd;;ADjDA;EAyCI,cAAc;ACYlB;AACA,oCAAoC","sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

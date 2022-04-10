@@ -42,8 +42,19 @@ const CreationPage = () => {
 
     axios
       .post("/api/v1/splitDataTest", splitData)
-      .then((result) => console.log(result.data))
-      .then((result) => setPhase("result"))
+      .then((result) => {
+        if (result.data.errors) {
+          for (let i = 0; i < result.data.errors.length; i++) {
+            const formElement = document.getElementById("creationForm");
+            const errorMessage = document.createElement("p");
+            errorMessage.classList.add("error-message");
+            errorMessage.innerHTML = result.data.errors[i].message;
+            formElement.appendChild(errorMessage);
+          }
+        } else {
+          setPhase("result");
+        }
+      })
       .catch((error) => console.log(error));
   };
 

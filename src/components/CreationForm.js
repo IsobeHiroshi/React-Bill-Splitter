@@ -29,7 +29,7 @@ const CreationForm = (props) => {
   const NumOfPeopleArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
-    <div className="creation-form">
+    <div className="creation-form" id="creationForm">
       <section id="firstSection">
         <label htmlFor="date">Date</label>
         <input

@@ -32,6 +32,33 @@ exports.splitDataValidator = (req, res) => {
           type: "Split Type is invalid.",
         },
       },
+      title: {
+        type: "string",
+        transform: ["trim"],
+        minLength: 1,
+        maxLength: 100,
+        errorMessage: {
+          minLength: "Please enter the title within 100 words.",
+          maxLength: "Please enter the title within 100 words.",
+        },
+      },
+      description: {
+        type: "string",
+        transform: ["trim"],
+        maxLength: 200,
+        errorMessage: {
+          maxLength: "Please enter the title within 200 words.",
+        },
+      },
+      totalAmountOfBill: {
+        type: "number",
+        transform: ["trim"],
+        minimum: 1,
+        errorMessage: {
+          type: "The total amount of bill is invalid.",
+          minimum: "Please enter the total amount of bill more than 1 dollar.",
+        },
+      },
       participants: {
         type: "array",
         minItems: 2,
@@ -41,6 +68,7 @@ exports.splitDataValidator = (req, res) => {
             type: "string",
             minLength: 1,
             maxLength: 50,
+            transform: ["trim"],
             errorMessage: {
               minLength:
                 "The length of the participants' name should be from 1 to 50.",
@@ -53,30 +81,6 @@ exports.splitDataValidator = (req, res) => {
           type: "Please add 2 to 10 participants",
           minItems: "Please add 2 to 10 participants",
           maxItems: "Please add 2 to 10 participants",
-        },
-      },
-      title: {
-        type: "string",
-        minLength: 1,
-        maxLength: 100,
-        errorMessage: {
-          minLength: "Please enter the title within 100 words.",
-          maxLength: "Please enter the title within 100 words.",
-        },
-      },
-      description: {
-        type: "string",
-        maxLength: 200,
-        errorMessage: {
-          maxLength: "Please enter the title within 200 words.",
-        },
-      },
-      totalAmountOfBill: {
-        type: "number",
-        minimum: 1,
-        errorMessage: {
-          type: "The total amount of bill is invalid.",
-          minimum: "Please enter the total amount of bill more than 1 dollar.",
         },
       },
       payer: {

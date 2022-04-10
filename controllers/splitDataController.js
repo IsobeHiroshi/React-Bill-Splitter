@@ -21,7 +21,7 @@ const postSplitData = (req, res) => {
 const postSplitDataTest = (req, res) => {
   validators.splitDataValidator(req, res);
   if (res.locals.errors) {
-    console.log(res.locals.errors);
+    res.send(res.locals);
   } else {
     res.json(req.body);
   }
