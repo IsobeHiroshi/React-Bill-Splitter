@@ -10611,7 +10611,7 @@ var App = function App(props) {
     onClick: function onClick(event) {
       return setMode(!mode);
     }
-  }, mode ? "See History" : "Create New")), mode ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CreationPage__WEBPACK_IMPORTED_MODULE_1__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RetrievalPage_js__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
+  }, mode ? "See History" : "Go Back")), mode ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CreationPage__WEBPACK_IMPORTED_MODULE_1__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RetrievalPage_js__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
@@ -10975,9 +10975,9 @@ var EvenResult = function EvenResult(props) {
 
 /***/ }),
 
-/***/ "./src/components/RetrievalForm.js":
+/***/ "./src/components/RetrievalArea.js":
 /*!*****************************************!*\
-  !*** ./src/components/RetrievalForm.js ***!
+  !*** ./src/components/RetrievalArea.js ***!
   \*****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -10990,17 +10990,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 
-var RetrievalForm = function RetrievalForm(props) {
+var RetrievalArea = function RetrievalArea(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "history"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "History"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, props.historyArr.map(function (data) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "History"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("table", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Total Bill"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Split Type"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Payer"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, props.historyArr.map(function (data) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", {
       key: data._id
-    }, data.title);
-  })));
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, data.date.substr(0, 10)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, data.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, data.totalAmountOfBill), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, data.splitType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, data.payer));
+  }))));
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RetrievalForm);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RetrievalArea);
 
 /***/ }),
 
@@ -11019,7 +11019,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _RetrievalForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RetrievalForm */ "./src/components/RetrievalForm.js");
+/* harmony import */ var _RetrievalArea__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RetrievalArea */ "./src/components/RetrievalArea.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -11050,9 +11050,11 @@ var RetrievalPage = function RetrievalPage() {
       return console.log(error);
     });
   }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement((react__WEBPACK_IMPORTED_MODULE_1___default().Fragment), null, historyArr ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_RetrievalForm__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement((react__WEBPACK_IMPORTED_MODULE_1___default().Fragment), null, historyArr ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_RetrievalArea__WEBPACK_IMPORTED_MODULE_2__["default"], {
     historyArr: historyArr
-  }) : "");
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
+    className: "history"
+  }, "\"Loading...\""));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RetrievalPage);
@@ -11072,51 +11074,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 var RussianResult = function RussianResult(props) {
   // Generate a random number to pick a payer randomly
   var randomNum = Math.floor(Math.random() * props.participants.length + 1);
   var billPayer = props.participants[randomNum];
-
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
-      _useState2 = _slicedToArray(_useState, 2),
-      isLoading = _useState2[0],
-      setIsLoading = _useState2[1];
-
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (billPayer == undefined) {
-      setIsLoading(true);
-    } else {
-      setIsLoading(false);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, billPayer ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "russian-result"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Russian Result"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, billPayer, " Will Pay $", props.totalAmountOfBill, "!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: function onClick(event) {
+      props.saveResultAndGoBack(event, billPayer);
     }
-  }, [billPayer]);
-
-  if (isLoading) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "russian-result"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Loading..."));
-  } else {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "russian-result"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Russian Result"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, billPayer, " Will Pay $", props.totalAmountOfBill, "!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-      onClick: function onClick(event) {
-        props.saveResultAndGoBack(event, billPayer);
-      }
-    }, "Save Result and Go Back"));
-  }
+  }, "Save Result and Go Back")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "russian-result"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Loading...")));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RussianResult);
@@ -11143,7 +11115,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "h1 {\n  text-align: center;\n  margin-bottom: 50px;\n}\n\ndiv#buttonWrapper {\n  width: 50%;\n  margin: 50px auto;\n}\n\ndiv.history,\ndiv.russian-result,\ndiv.even-result {\n  width: 50%;\n  margin: 0 auto;\n}\n\ndiv.creation-form {\n  width: 50%;\n  margin: 0 auto;\n}\n\ndiv.creation-form section#firstSection {\n  display: grid;\n  grid-template-columns: 2fr 3fr;\n}\n\ndiv.creation-form section#firstSection input,\ndiv.creation-form section#firstSection textarea,\ndiv.creation-form section#firstSection select {\n  margin-bottom: 40px;\n}\n\ndiv.creation-form section#firstSection span {\n  font-size: 0.8rem;\n  margin-left: 10px;\n}\n\ndiv.creation-form section#firstSection input#date {\n  width: 50%;\n}\n\ndiv.creation-form section#firstSection input#peopleNum {\n  width: 20%;\n}\n\ndiv.creation-form section#firstSection select#splitType,\ndiv.creation-form section#firstSection input#totalAmount {\n  width: 40%;\n}\n\ndiv.creation-form section#secondSection {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n}\n\ndiv.creation-form section#secondSection .participantLabel {\n  margin-right: 10px;\n}\n\ndiv.creation-form section#secondSection .participantInput {\n  margin-bottom: 20px;\n}\n\ndiv.creation-form p.error-message {\n  color: red;\n}\n\ndiv.creation-form button.submitButton {\n  margin: 30px 0;\n}\n/*# sourceMappingURL=style.css.map */", "",{"version":3,"sources":["webpack://./src/sass/style.scss","webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,kBAAkB;EAClB,mBAAmB;ACCrB;;ADEA;EACE,UAAU;EACV,iBAAiB;ACCnB;;ADEA;;;EAGE,UAAU;EACV,cAAc;ACChB;;ADEA;EACE,UAAU;EACV,cAAc;ACChB;;ADHA;EAII,aAAa;EACb,8BAA8B;ACGlC;;ADRA;;;EASM,mBAAmB;ACKzB;;ADdA;EAYM,iBAAiB;EACjB,iBAAiB;ACMvB;;ADnBA;EAiBM,UAAU;ACMhB;;ADvBA;EAoBM,UAAU;ACOhB;;AD3BA;;EAwBM,UAAU;ACQhB;;ADhCA;EA4BI,aAAa;EACb,8BAA8B;ACQlC;;ADrCA;EA+BM,kBAAkB;ACUxB;;ADzCA;EAkCM,mBAAmB;ACWzB;;AD7CA;EAsCI,UAAU;ACWd;;ADjDA;EAyCI,cAAc;ACYlB;AACA,oCAAoC","sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "h1 {\n  text-align: center;\n  margin-bottom: 50px;\n}\n\ndiv#buttonWrapper {\n  width: 50%;\n  margin: 50px auto;\n}\n\ndiv.history,\ndiv.russian-result,\ndiv.even-result {\n  width: 50%;\n  margin: 0 auto;\n}\n\ndiv.history table {\n  width: 100%;\n}\n\ndiv.history table thead {\n  background-color: lightgray;\n}\n\ndiv.history table tr:nth-child(2n) {\n  background-color: lightcyan;\n}\n\ndiv.creation-form {\n  width: 50%;\n  margin: 0 auto;\n}\n\ndiv.creation-form section#firstSection {\n  display: grid;\n  grid-template-columns: 2fr 3fr;\n}\n\ndiv.creation-form section#firstSection input,\ndiv.creation-form section#firstSection textarea,\ndiv.creation-form section#firstSection select {\n  margin-bottom: 40px;\n}\n\ndiv.creation-form section#firstSection span {\n  font-size: 0.8rem;\n  margin-left: 10px;\n}\n\ndiv.creation-form section#firstSection input#date {\n  width: 50%;\n}\n\ndiv.creation-form section#firstSection input#peopleNum {\n  width: 20%;\n}\n\ndiv.creation-form section#firstSection select#splitType,\ndiv.creation-form section#firstSection input#totalAmount {\n  width: 40%;\n}\n\ndiv.creation-form section#secondSection {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n}\n\ndiv.creation-form section#secondSection .participantLabel {\n  margin-right: 10px;\n}\n\ndiv.creation-form section#secondSection .participantInput {\n  margin-bottom: 20px;\n}\n\ndiv.creation-form p.error-message {\n  color: red;\n}\n\ndiv.creation-form button.submitButton {\n  margin: 30px 0;\n}\n/*# sourceMappingURL=style.css.map */", "",{"version":3,"sources":["webpack://./src/sass/style.scss","webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,kBAAkB;EAClB,mBAAmB;ACCrB;;ADEA;EACE,UAAU;EACV,iBAAiB;ACCnB;;ADEA;;;EAGE,UAAU;EACV,cAAc;ACChB;;ADCA;EAEI,WAAW;ACCf;;ADHA;EAIM,2BAA2B;ACGjC;;ADPA;EAQQ,2BAA2B;ACGnC;;ADGA;EACE,UAAU;EACV,cAAc;ACAhB;;ADFA;EAII,aAAa;EACb,8BAA8B;ACElC;;ADPA;;;EASM,mBAAmB;ACIzB;;ADbA;EAYM,iBAAiB;EACjB,iBAAiB;ACKvB;;ADlBA;EAiBM,UAAU;ACKhB;;ADtBA;EAoBM,UAAU;ACMhB;;AD1BA;;EAwBM,UAAU;ACOhB;;AD/BA;EA4BI,aAAa;EACb,8BAA8B;ACOlC;;ADpCA;EA+BM,kBAAkB;ACSxB;;ADxCA;EAkCM,mBAAmB;ACUzB;;AD5CA;EAsCI,UAAU;ACUd;;ADhDA;EAyCI,cAAc;ACWlB;AACA,oCAAoC","sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

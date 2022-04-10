@@ -14,6 +14,19 @@ div.even-result {
   width: 50%;
   margin: 0 auto;
 }
+div.history {
+  table {
+    width: 100%;
+    thead {
+      background-color: lightgray;
+    }
+    tr {
+      &:nth-child(2n) {
+        background-color: lightcyan;
+      }
+    }
+  }
+}
 
 div.creation-form {
   width: 50%;

@@ -11,7 +11,7 @@ const App = (props) => {
         <h1>Bill Splitter</h1>
         <div id="buttonWrapper">
           <button onClick={(event) => setMode(!mode)}>
-            {mode ? "See History" : "Create New"}
+            {mode ? "See History" : "Go Back"}
           </button>
         </div>
         {mode ? <CreationPage /> : <RetrievalPage />}

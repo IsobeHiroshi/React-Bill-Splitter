@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import RetrievalForm from "./RetrievalForm";
+import RetrievalArea from "./RetrievalArea";
 const RetrievalPage = () => {
   const [historyArr, setHistoryArr] = useState();
 
@@ -14,7 +14,15 @@ const RetrievalPage = () => {
       .catch((error) => console.log(error));
   }, []);
 
-  return <>{historyArr ? <RetrievalForm historyArr={historyArr} /> : ""}</>;
+  return (
+    <>
+      {historyArr ? (
+        <RetrievalArea historyArr={historyArr} />
+      ) : (
+        <div className="history">"Loading..."</div>
+      )}
+    </>
+  );
 };
 
 export default RetrievalPage;
