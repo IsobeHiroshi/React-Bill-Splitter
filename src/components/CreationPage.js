@@ -19,8 +19,40 @@ const CreationPage = () => {
   const [title, setTitle] = useState();
   const [description, setDescription] = useState();
 
+  const handleSubmitForm = (event) => {
+    let splitData = {
+      date: date,
+      splitType: splitType,
+      participants: participants,
+      title: title,
+      description: description,
+      totalAmountOfBill: parseInt(totalAmountOfBill),
+    };
+    axios
+      .post("/api/v1/splitDataTest", splitData)
+      .then((result) => console.log(result.data))
+      .then((result) => setPhase("result"))
+      .then((result) => {
+        const participantInputs =
+          document.querySelectorAll(".participantInput");
+
+        /* Once store the participants in a temporary array */
+        let temporaryParticipantsArr = [];
+        for (let i = 0; i < participantInputs.length; i++) {
+          let participant = participantInputs[i].value;
+          temporaryParticipantsArr.push(participant);
+        }
+        return temporaryParticipantsArr;
+      })
+      .then((result) => {
+        /* Set the temporary array to participants state */
+        setParticipants(result);
+      })
+      .catch((error) => console.log(error));
+  };
+
   const saveResultAndGoBack = (event, payer) => {
-    const splitData = {
+    let splitData = {
       date: date,
       splitType: splitType,
       participants: participants,
@@ -29,8 +61,10 @@ const CreationPage = () => {
       totalAmountOfBill: parseInt(totalAmountOfBill),
       payer: payer,
     };
+
     axios
       .post("/api/v1/splitData", splitData)
+      .then((result) => console.log(result.data))
       .catch((error) => console.log(error));
 
     /* Reset the state when saving the result */
@@ -41,22 +75,6 @@ const CreationPage = () => {
     setDescription("");
     setTitle("");
     setDate("");
-  };
-
-  const handleSubmitForm = (event) => {
-    event.preventDefault;
-    setPhase("result");
-    const participantInputs = document.querySelectorAll(".participantInput");
-
-    /* Once store the participants in a temporary array */
-    let temporaryParticipantsArr = [];
-    for (let i = 0; i < participantInputs.length; i++) {
-      let participant = participantInputs[i].value;
-      temporaryParticipantsArr.push(participant);
-    }
-
-    /* Set the temporary array to participants state */
-    setParticipants(temporaryParticipantsArr);
   };
 
   /* Render different components based on the phase and splitType */

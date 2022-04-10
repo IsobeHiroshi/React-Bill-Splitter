@@ -10844,6 +10844,39 @@ var CreationPage = function CreationPage() {
       description = _useState14[0],
       setDescription = _useState14[1];
 
+  var handleSubmitForm = function handleSubmitForm(event) {
+    var splitData = {
+      date: date,
+      splitType: splitType,
+      participants: participants,
+      title: title,
+      description: description,
+      totalAmountOfBill: parseInt(totalAmountOfBill)
+    };
+    axios__WEBPACK_IMPORTED_MODULE_4___default().post("/api/v1/splitDataTest", splitData).then(function (result) {
+      return console.log(result.data);
+    }).then(function (result) {
+      return setPhase("result");
+    }).then(function (result) {
+      var participantInputs = document.querySelectorAll(".participantInput");
+      /* Once store the participants in a temporary array */
+
+      var temporaryParticipantsArr = [];
+
+      for (var i = 0; i < participantInputs.length; i++) {
+        var participant = participantInputs[i].value;
+        temporaryParticipantsArr.push(participant);
+      }
+
+      return temporaryParticipantsArr;
+    }).then(function (result) {
+      /* Set the temporary array to participants state */
+      setParticipants(result);
+    })["catch"](function (error) {
+      return console.log(error);
+    });
+  };
+
   var saveResultAndGoBack = function saveResultAndGoBack(event, payer) {
     var splitData = {
       date: date,
@@ -10854,7 +10887,9 @@ var CreationPage = function CreationPage() {
       totalAmountOfBill: parseInt(totalAmountOfBill),
       payer: payer
     };
-    axios__WEBPACK_IMPORTED_MODULE_4___default().post("/api/v1/splitData", splitData)["catch"](function (error) {
+    axios__WEBPACK_IMPORTED_MODULE_4___default().post("/api/v1/splitData", splitData).then(function (result) {
+      return console.log(result.data);
+    })["catch"](function (error) {
       return console.log(error);
     });
     /* Reset the state when saving the result */
@@ -10866,24 +10901,6 @@ var CreationPage = function CreationPage() {
     setDescription("");
     setTitle("");
     setDate("");
-  };
-
-  var handleSubmitForm = function handleSubmitForm(event) {
-    event.preventDefault;
-    setPhase("result");
-    var participantInputs = document.querySelectorAll(".participantInput");
-    /* Once store the participants in a temporary array */
-
-    var temporaryParticipantsArr = [];
-
-    for (var i = 0; i < participantInputs.length; i++) {
-      var participant = participantInputs[i].value;
-      temporaryParticipantsArr.push(participant);
-    }
-    /* Set the temporary array to participants state */
-
-
-    setParticipants(temporaryParticipantsArr);
   };
   /* Render different components based on the phase and splitType */
 
