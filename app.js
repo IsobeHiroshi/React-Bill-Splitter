@@ -11,7 +11,9 @@ let mongoDB = process.env.MONGO_URL;
 
 mongoose.connect(mongoDB).then(() => {
   console.log("connected");
-  const server = app.listen(8080, () => console.log("listening"));
+  const server = app.listen(process.env.PORT || 8080, () =>
+    console.log("listening")
+  );
 });
 
 const router = require("./routes/index.js");
