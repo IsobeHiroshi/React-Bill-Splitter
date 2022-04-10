@@ -44,12 +44,13 @@ const CreationPage = () => {
       .post("/api/v1/splitDataTest", splitData)
       .then((result) => {
         if (result.data.errors) {
+          const errorArea = document.getElementById("errorArea");
+          errorArea.innerHTML = "";
           for (let i = 0; i < result.data.errors.length; i++) {
-            const formElement = document.getElementById("creationForm");
             const errorMessage = document.createElement("p");
             errorMessage.classList.add("error-message");
             errorMessage.innerHTML = result.data.errors[i].message;
-            formElement.appendChild(errorMessage);
+            errorArea.appendChild(errorMessage);
           }
         } else {
           setPhase("result");
@@ -84,6 +85,16 @@ const CreationPage = () => {
     setDate("");
   };
 
+  const dontSaveResultAndGoBack = (event) => {
+    setPhase("input");
+    setSplitType("even");
+    setParticipants([]);
+    setTotalAmountOfBill(0);
+    setDescription("");
+    setTitle("");
+    setDate("");
+  };
+
   /* Render different components based on the phase and splitType */
   if (phase == "input") {
     return (
@@ -106,6 +117,7 @@ const CreationPage = () => {
         totalAmountOfBill={totalAmountOfBill}
         setPhase={setPhase}
         saveResultAndGoBack={saveResultAndGoBack}
+        dontSaveResultAndGoBack={dontSaveResultAndGoBack}
       />
     );
   } else if (phase == "result" && splitType == "russianRoulette") {
@@ -115,6 +127,7 @@ const CreationPage = () => {
         totalAmountOfBill={totalAmountOfBill}
         setPhase={setPhase}
         saveResultAndGoBack={saveResultAndGoBack}
+        dontSaveResultAndGoBack={dontSaveResultAndGoBack}
       />
     );
   }

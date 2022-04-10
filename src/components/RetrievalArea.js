@@ -19,7 +19,7 @@ const RetrievalArea = (props) => {
             <tr key={data._id}>
               <td>{data.date.substr(0, 10)}</td>
               <td>{data.title}</td>
-              <td>{data.totalAmountOfBill}</td>
+              <td>${data.totalAmountOfBill}</td>
               <td>{data.splitType}</td>
               <td>{data.payer}</td>
             </tr>

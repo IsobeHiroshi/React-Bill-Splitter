@@ -10760,7 +10760,9 @@ var CreationForm = function CreationForm(props) {
     onClick: function onClick(event) {
       return props.handleSubmitForm(event);
     }
-  }, "Submit!"));
+  }, "Submit!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    id: "errorArea"
+  }));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CreationForm);
@@ -10869,12 +10871,14 @@ var CreationPage = function CreationPage() {
     };
     axios__WEBPACK_IMPORTED_MODULE_4___default().post("/api/v1/splitDataTest", splitData).then(function (result) {
       if (result.data.errors) {
+        var errorArea = document.getElementById("errorArea");
+        errorArea.innerHTML = "";
+
         for (var _i2 = 0; _i2 < result.data.errors.length; _i2++) {
-          var formElement = document.getElementById("creationForm");
           var errorMessage = document.createElement("p");
           errorMessage.classList.add("error-message");
           errorMessage.innerHTML = result.data.errors[_i2].message;
-          formElement.appendChild(errorMessage);
+          errorArea.appendChild(errorMessage);
         }
       } else {
         setPhase("result");
@@ -10909,6 +10913,16 @@ var CreationPage = function CreationPage() {
     setTitle("");
     setDate("");
   };
+
+  var dontSaveResultAndGoBack = function dontSaveResultAndGoBack(event) {
+    setPhase("input");
+    setSplitType("even");
+    setParticipants([]);
+    setTotalAmountOfBill(0);
+    setDescription("");
+    setTitle("");
+    setDate("");
+  };
   /* Render different components based on the phase and splitType */
 
 
@@ -10929,14 +10943,16 @@ var CreationPage = function CreationPage() {
       participants: participants,
       totalAmountOfBill: totalAmountOfBill,
       setPhase: setPhase,
-      saveResultAndGoBack: saveResultAndGoBack
+      saveResultAndGoBack: saveResultAndGoBack,
+      dontSaveResultAndGoBack: dontSaveResultAndGoBack
     });
   } else if (phase == "result" && splitType == "russianRoulette") {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RussianResult__WEBPACK_IMPORTED_MODULE_3__["default"], {
       participants: participants,
       totalAmountOfBill: totalAmountOfBill,
       setPhase: setPhase,
-      saveResultAndGoBack: saveResultAndGoBack
+      saveResultAndGoBack: saveResultAndGoBack,
+      dontSaveResultAndGoBack: dontSaveResultAndGoBack
     });
   }
 };
@@ -10964,11 +10980,15 @@ var EvenResult = function EvenResult(props) {
   var costPerPerson = props.totalAmountOfBill / props.participants.length;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "even-result"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Even Result"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Everyone Will Pay $", costPerPerson, "."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Result: Even"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Everyone Will Pay $", costPerPerson, "."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     onClick: function onClick(event) {
       return props.saveResultAndGoBack(event, "everyone");
     }
-  }, "Save Result and Go Back"));
+  }, "Save Result and Go Back"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: function onClick(event) {
+      return props.dontSaveResultAndGoBack(event);
+    }
+  }, "Don't Save and Go Back"));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EvenResult);
@@ -10996,7 +11016,7 @@ var RetrievalArea = function RetrievalArea(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "History"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("table", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Total Bill"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Split Type"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Payer"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, props.historyArr.map(function (data) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", {
       key: data._id
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, data.date.substr(0, 10)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, data.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, data.totalAmountOfBill), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, data.splitType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, data.payer));
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, data.date.substr(0, 10)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, data.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, "$", data.totalAmountOfBill), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, data.splitType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, data.payer));
   }))));
 };
 
@@ -11082,7 +11102,7 @@ var RussianResult = function RussianResult(props) {
   var billPayer = props.participants[randomNum];
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, billPayer ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "russian-result"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Russian Result"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, billPayer, " Will Pay $", props.totalAmountOfBill, "!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Result: Russian Roulette"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, billPayer, " Will Pay $", props.totalAmountOfBill, "!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     onClick: function onClick(event) {
       props.saveResultAndGoBack(event, billPayer);
     }

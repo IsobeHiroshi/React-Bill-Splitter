@@ -8,7 +8,7 @@ const RussianResult = (props) => {
     <>
       {billPayer ? (
         <div className="russian-result">
-          <h2>Russian Result</h2>
+          <h2>Result: Russian Roulette</h2>
           <p>
             {billPayer} Will Pay ${props.totalAmountOfBill}!
           </p>

@@ -107,6 +107,7 @@ const CreationForm = (props) => {
       >
         Submit!
       </button>
+      <div id="errorArea"></div>
     </div>
   );
 };
