@@ -10834,7 +10834,7 @@ var CreationPage = function CreationPage() {
       date = _useState10[0],
       setDate = _useState10[1];
 
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
       _useState12 = _slicedToArray(_useState11, 2),
       title = _useState12[0],
       setTitle = _useState12[1];
@@ -10845,10 +10845,23 @@ var CreationPage = function CreationPage() {
       setDescription = _useState14[1];
 
   var handleSubmitForm = function handleSubmitForm(event) {
+    var participantInputs = document.querySelectorAll(".participantInput");
+    /* Once store the participants in a temporary array */
+
+    var temporaryParticipantsArr = [];
+
+    for (var i = 0; i < participantInputs.length; i++) {
+      var participant = participantInputs[i].value;
+      temporaryParticipantsArr.push(participant);
+    }
+    /* Set the temporary array to participants state */
+
+
+    setParticipants(temporaryParticipantsArr);
     var splitData = {
       date: date,
       splitType: splitType,
-      participants: participants,
+      participants: temporaryParticipantsArr,
       title: title,
       description: description,
       totalAmountOfBill: parseInt(totalAmountOfBill)
@@ -10857,21 +10870,6 @@ var CreationPage = function CreationPage() {
       return console.log(result.data);
     }).then(function (result) {
       return setPhase("result");
-    }).then(function (result) {
-      var participantInputs = document.querySelectorAll(".participantInput");
-      /* Once store the participants in a temporary array */
-
-      var temporaryParticipantsArr = [];
-
-      for (var i = 0; i < participantInputs.length; i++) {
-        var participant = participantInputs[i].value;
-        temporaryParticipantsArr.push(participant);
-      }
-
-      return temporaryParticipantsArr;
-    }).then(function (result) {
-      /* Set the temporary array to participants state */
-      setParticipants(result);
     })["catch"](function (error) {
       return console.log(error);
     });

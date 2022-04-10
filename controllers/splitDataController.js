@@ -1,4 +1,5 @@
 const splitData = require("../models/splitData");
+const validators = require("../validator/validator");
 
 const postSplitData = (req, res) => {
   let newSplitData = new splitData({
@@ -18,7 +19,12 @@ const postSplitData = (req, res) => {
 };
 
 const postSplitDataTest = (req, res) => {
-  res.json(req.body);
+  validators.splitDataValidator(req, res);
+  if (res.locals.errors) {
+    console.log(res.locals.errors);
+  } else {
+    res.json(req.body);
+  }
 };
 
 module.exports = { postSplitData, postSplitDataTest };
