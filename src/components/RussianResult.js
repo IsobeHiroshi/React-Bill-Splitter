@@ -8,7 +8,7 @@ const RussianResult = (props) => {
     <>
       {billPayer ? (
         <div className="russian-result">
-          <h2>Result: Russian Roulette</h2>
+          <h2>Result(Russian Roulette)</h2>
           <p>
             {billPayer} Will Pay ${props.totalAmountOfBill}!
           </p>
@@ -19,6 +19,9 @@ const RussianResult = (props) => {
             }}
           >
             Save Result and Go Back
+          </button>
+          <button onClick={(event) => props.dontSaveResultAndGoBack(event)}>
+            Don't Save and Go Back
           </button>
         </div>
       ) : (

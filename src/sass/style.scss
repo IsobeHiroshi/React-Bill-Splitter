@@ -1,3 +1,7 @@
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
 h1 {
   text-align: center;
   margin-bottom: 50px;
@@ -25,6 +29,20 @@ div.history {
         background-color: lightcyan;
       }
     }
+  }
+}
+
+div.russian-result,
+div.even-result {
+  p {
+    margin-bottom: 50px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2.5rem;
+  }
+  button {
+    display: block;
+    margin-bottom: 20px;
   }
 }
 
