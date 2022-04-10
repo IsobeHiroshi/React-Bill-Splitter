@@ -27,4 +27,8 @@ const postSplitDataTest = (req, res) => {
   }
 };
 
-module.exports = { postSplitData, postSplitDataTest };
+const getSplitData = (req, res) => {
+  splitData.find().then((results) => res.send(results));
+};
+
+module.exports = { postSplitData, postSplitDataTest, getSplitData };
