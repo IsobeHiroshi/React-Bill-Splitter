@@ -10851,7 +10851,7 @@ var CreationPage = function CreationPage() {
       participants: participants,
       title: title,
       description: description,
-      totalAmountOfBill: totalAmountOfBill,
+      totalAmountOfBill: parseInt(totalAmountOfBill),
       payer: payer
     };
     axios__WEBPACK_IMPORTED_MODULE_4___default().post("/api/v1/splitData", splitData)["catch"](function (error) {

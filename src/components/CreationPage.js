@@ -26,7 +26,7 @@ const CreationPage = () => {
       participants: participants,
       title: title,
       description: description,
-      totalAmountOfBill: totalAmountOfBill,
+      totalAmountOfBill: parseInt(totalAmountOfBill),
       payer: payer,
     };
     axios
