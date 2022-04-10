@@ -10863,6 +10863,9 @@ var CreationPage = function CreationPage() {
     setSplitType("even");
     setParticipants([]);
     setTotalAmountOfBill(0);
+    setDescription("");
+    setTitle("");
+    setDate("");
   };
 
   var handleSubmitForm = function handleSubmitForm(event) {

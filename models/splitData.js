@@ -10,9 +10,9 @@ const splitDataSchema = new Schema({
     default: "even",
   },
   participants: { type: Array, required: true },
-  title: { type: String, maxLength: 100, required: true },
+  title: { type: String, maxLength: 100, required: true, minLength: 1 },
   description: { type: String, maxLength: 200 },
-  totalAmountOfBill: { type: Number, required: true },
+  totalAmountOfBill: { type: Number, required: true, min: 1 },
   payer: { type: String, required: true },
 });
 

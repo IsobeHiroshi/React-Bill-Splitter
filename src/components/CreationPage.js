@@ -38,6 +38,9 @@ const CreationPage = () => {
     setSplitType("even");
     setParticipants([]);
     setTotalAmountOfBill(0);
+    setDescription("");
+    setTitle("");
+    setDate("");
   };
 
   const handleSubmitForm = (event) => {
