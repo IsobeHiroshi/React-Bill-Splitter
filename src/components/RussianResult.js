@@ -2,9 +2,7 @@ import React from "react";
 const RussianResult = (props) => {
   // Generate a random number to pick a payer randomly
   const billPayer =
-    props.participants[
-      Math.floor(Math.random() * props.participants.length + 1)
-    ];
+    props.participants[Math.floor(Math.random() * props.participants.length)];
   const waiting = props.useDelay(2000);
 
   return (
