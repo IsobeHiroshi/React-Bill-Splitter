@@ -4,6 +4,7 @@ https://wmdd4936-hisobe00.herokuapp.com/
 
 ## How to Build and Run App
 
+- Execute `npm install` to install all the necessary node package.
 - `npm dev` will boot nodemon with app.js in root folder, which listens to local port 8080.
 - `npm watch` will compile webpack configuration file.
 
