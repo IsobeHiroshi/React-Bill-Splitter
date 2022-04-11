@@ -19,10 +19,32 @@ https://wmdd4936-hisobe00.herokuapp.com/
 
 ### Endpoints
 
-- /api/v1//splitDataTest(POST): Test the data format which is about to be submitted. If there are unacceptable data format, the errors will show up on the UI.
+- /api/v1/splitDataTest(POST): Test the data format which is about to be submitted. If there are unacceptable data format, the errors will show up on the UI.
 - /api/v1/splitData(POST): Creates a new split data and save it in the database.
 - /api/v1/splitData(GET): Fetch all the saved data from the database.
+
+### How to use Endpoints
+
+- /api/v1/splitDataTest(POST)
+  If split data is sent towards this endpoint, the data will be validated, and if there are any errors, an array with error message will be returned.
+
+- /api/v1/splitData(POST)
+  If split data is sent towards this endpoint, the data will be saved in the database(MongoDB) after going through a similar validation process to above. If the data can't be validated, it won't be saved to the database.
+
+- /api/v1/splitData(GET)
+  If you access this endpoint, the array which has all the split data will be returned, which is used in history page.
 
 ### Response Format
 
 - JSON is always used.
+
+### Expected POST Body Format
+
+- This app basically handles only one type of object, which should have the properties below.
+- Date: String, ISO8601 Format, required.
+- SplitType: String, "even"(default) or "russianRoulette".
+- Participants: Array, 2 items(people) minimum and 10 maximum.
+- Title: String, 1 character minimum and 100 maximum, required.
+- Description: String, 200 characters maximum.
+- TotalAmountOfBill: Number, minimum 1.
+- Payer: String, 1 character minimum and 50 maximum, required. (When split type is set to "even," this property will be automatically set to "everyone.")
