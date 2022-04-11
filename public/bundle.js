@@ -10810,13 +10810,15 @@ var CreationPage = function CreationPage() {
       _useState2 = _slicedToArray(_useState, 2),
       splitType = _useState2[0],
       setSplitType = _useState2[1];
-  /* Phase will ba either "input" or "result," based on which the form component or the result component is rendered */
+  /* Phase is either "input" or "result," based on which the form component or the result component is rendered */
 
 
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("input"),
       _useState4 = _slicedToArray(_useState3, 2),
       phase = _useState4[0],
       setPhase = _useState4[1];
+  /* States for form change handler in CreationForm.js */
+
   /* Participants and totalAmountOfBill is taken from the CreationForm inputs */
 
 
@@ -10824,8 +10826,6 @@ var CreationPage = function CreationPage() {
       _useState6 = _slicedToArray(_useState5, 2),
       participants = _useState6[0],
       setParticipants = _useState6[1];
-  /* States for form change handler in CreationForm.js */
-
 
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
       _useState8 = _slicedToArray(_useState7, 2),
@@ -10846,6 +10846,10 @@ var CreationPage = function CreationPage() {
       _useState14 = _slicedToArray(_useState13, 2),
       description = _useState14[0],
       setDescription = _useState14[1];
+  /* ===========================================================
+      Event Handlers
+  ============================================================ */
+
 
   var handleSubmitForm = function handleSubmitForm(event) {
     var participantInputs = document.querySelectorAll(".participantInput");
@@ -10923,6 +10927,8 @@ var CreationPage = function CreationPage() {
     setTitle("");
     setDate("");
   };
+  /* A function to delay the rendering of component, in terms of visual effect*/
+
 
   var useDelay = function useDelay(msec) {
     var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
@@ -10962,7 +10968,7 @@ var CreationPage = function CreationPage() {
       useDelay: useDelay
     });
   } else if (phase == "result" && splitType == "russianRoulette") {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, participants ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RussianResult__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, participants.length > 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RussianResult__WEBPACK_IMPORTED_MODULE_3__["default"], {
       participants: participants,
       totalAmountOfBill: totalAmountOfBill,
       setPhase: setPhase,
@@ -11194,9 +11200,7 @@ var RussianResult = function RussianResult(props) {
   // Generate a random number to pick a payer randomly
   var billPayer = props.participants[Math.floor(Math.random() * props.participants.length + 1)];
   var waiting = props.useDelay(2000);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, waiting || !billPayer ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "russian-result"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Choosing payer... sit tight!")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, !waiting && billPayer ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "russian-result"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Result(Russian Roulette)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: "russian-payer"
@@ -11208,7 +11212,9 @@ var RussianResult = function RussianResult(props) {
     onClick: function onClick(event) {
       return props.dontSaveResultAndGoBack(event);
     }
-  }, "Don't Save and Go Back")));
+  }, "Don't Save and Go Back")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "russian-result"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Choosing payer... sit tight!")));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RussianResult);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 const RussianResult = (props) => {
   // Generate a random number to pick a payer randomly
   const billPayer =
@@ -9,11 +9,7 @@ const RussianResult = (props) => {
 
   return (
     <>
-      {waiting || !billPayer ? (
-        <div className="russian-result">
-          <p>Choosing payer... sit tight!</p>
-        </div>
-      ) : (
+      {!waiting && billPayer ? (
         <div className="russian-result">
           <h2>Result(Russian Roulette)</h2>
           <p className="russian-payer">
@@ -30,6 +26,10 @@ const RussianResult = (props) => {
           <button onClick={(event) => props.dontSaveResultAndGoBack(event)}>
             Don't Save and Go Back
           </button>
+        </div>
+      ) : (
+        <div className="russian-result">
+          <p>Choosing payer... sit tight!</p>
         </div>
       )}
     </>

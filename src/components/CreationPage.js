@@ -7,17 +7,20 @@ import axios from "axios";
 const CreationPage = () => {
   const [splitType, setSplitType] = useState("even");
 
-  /* Phase will ba either "input" or "result," based on which the form component or the result component is rendered */
+  /* Phase is either "input" or "result," based on which the form component or the result component is rendered */
   const [phase, setPhase] = useState("input");
 
+  /* States for form change handler in CreationForm.js */
   /* Participants and totalAmountOfBill is taken from the CreationForm inputs */
   const [participants, setParticipants] = useState();
-
-  /* States for form change handler in CreationForm.js */
   const [totalAmountOfBill, setTotalAmountOfBill] = useState();
   const [date, setDate] = useState();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState();
+
+  /* ===========================================================
+      Event Handlers
+  ============================================================ */
 
   const handleSubmitForm = (event) => {
     const participantInputs = document.querySelectorAll(".participantInput");
@@ -95,6 +98,7 @@ const CreationPage = () => {
     setDate("");
   };
 
+  /* A function to delay the rendering of component, in terms of visual effect*/
   const useDelay = (msec) => {
     const [waiting, setWaiting] = useState(true);
     useEffect(() => {
@@ -132,7 +136,7 @@ const CreationPage = () => {
   } else if (phase == "result" && splitType == "russianRoulette") {
     return (
       <>
-        {participants ? (
+        {participants.length > 1 ? (
           <RussianResult
             participants={participants}
             totalAmountOfBill={totalAmountOfBill}
