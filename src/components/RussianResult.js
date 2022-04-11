@@ -7,7 +7,7 @@ const RussianResult = (props) => {
 
   return (
     <>
-      {waiting ? (
+      {waiting || !billPayer ? (
         <div className="russian-result">
           <p>Choosing payer... sit tight!</p>
         </div>

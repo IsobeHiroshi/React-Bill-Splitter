@@ -25,10 +25,20 @@ div.history table {
 
 div.history table thead {
   background-color: lightgray;
+  height: 40px;
 }
 
 div.history table tr:nth-child(2n) {
+  height: 30px;
   background-color: lightcyan;
+}
+
+div.history table tr td {
+  padding-left: 10px;
+}
+
+div.history table tr td:last-child {
+  text-align: center;
 }
 
 div.russian-result p,
@@ -116,5 +126,18 @@ div.creation-form p.error-message {
 
 div.creation-form button.submitButton {
   margin: 30px 0;
+}
+
+div#history-detail {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 30vw;
+  height: 50vh;
+  background-color: white;
+  border: 1px black solid;
+  padding: 20px;
+  box-shadow: 0 18px 50px -10px rgba(0, 0, 0, 0.2);
 }
 /*# sourceMappingURL=style.css.map */

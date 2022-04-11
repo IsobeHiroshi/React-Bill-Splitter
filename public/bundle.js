@@ -10977,6 +10977,45 @@ var CreationPage = function CreationPage() {
 
 /***/ }),
 
+/***/ "./src/components/DetailModal.js":
+/*!***************************************!*\
+  !*** ./src/components/DetailModal.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var DetailModal = function DetailModal(props) {
+  var detailHistory = props.historyArr.find(function (history) {
+    return history._id === props.whichHistory;
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    id: "history-detail"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "Detail"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
+    id: "detailSection"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Date: ", detailHistory.date.substr(0, 10)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Title: ", detailHistory.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Total Bill: $", detailHistory.totalAmountOfBill), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Split Type: ", detailHistory.splitType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Payer: ", detailHistory.payer), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Participants:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, detailHistory.participants.map(function (participant) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
+      key: participant
+    }, participant);
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Description: ", detailHistory.description)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: function onClick(event) {
+      props.setShowDetail(!props.showDetail);
+      props.setWhichHistory("");
+    }
+  }, "Close"));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DetailModal);
+
+/***/ }),
+
 /***/ "./src/components/EvenResult.js":
 /*!**************************************!*\
   !*** ./src/components/EvenResult.js ***!
@@ -11027,16 +11066,52 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _DetailModal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DetailModal */ "./src/components/DetailModal.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 var RetrievalArea = function RetrievalArea(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      showDetail = _useState2[0],
+      setShowDetail = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
+      _useState4 = _slicedToArray(_useState3, 2),
+      whichHistory = _useState4[0],
+      setWhichHistory = _useState4[1];
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "history"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "History"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("table", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Total Bill"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Split Type"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Payer"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, props.historyArr.map(function (data) {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "History"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("table", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Total Bill"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Split Type"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Payer"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, "Detail"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, props.historyArr.map(function (data) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", {
       key: data._id
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, data.date.substr(0, 10)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, data.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, "$", data.totalAmountOfBill), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, data.splitType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, data.payer));
-  }))));
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, data.date.substr(0, 10)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, data.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, "$", data.totalAmountOfBill), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, data.splitType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, data.payer), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      className: data._id,
+      onClick: function onClick(event) {
+        setShowDetail(!showDetail);
+        setWhichHistory(event.target.className);
+      }
+    }, "See Detail")));
+  })))), showDetail ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_DetailModal__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    setShowDetail: setShowDetail,
+    showDetail: showDetail,
+    historyArr: props.historyArr,
+    whichHistory: whichHistory,
+    setWhichHistory: setWhichHistory
+  }) : "");
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RetrievalArea);
@@ -11120,7 +11195,7 @@ var RussianResult = function RussianResult(props) {
   var randomNum = Math.floor(Math.random() * props.participants.length + 1);
   var billPayer = props.participants[randomNum];
   var waiting = props.useDelay(2000);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, waiting ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, waiting || !billPayer ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "russian-result"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Choosing payer... sit tight!")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "russian-result"
@@ -11161,7 +11236,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\n  font-family: \"Gill Sans\", \"Gill Sans MT\", Calibri, \"Trebuchet MS\", sans-serif;\n}\n\nh1 {\n  text-align: center;\n  margin-bottom: 50px;\n}\n\ndiv#buttonWrapper {\n  width: 50%;\n  margin: 50px auto;\n}\n\ndiv.history,\ndiv.russian-result,\ndiv.even-result {\n  width: 50%;\n  margin: 0 auto;\n}\n\ndiv.history table {\n  width: 100%;\n}\n\ndiv.history table thead {\n  background-color: lightgray;\n}\n\ndiv.history table tr:nth-child(2n) {\n  background-color: lightcyan;\n}\n\ndiv.russian-result p,\ndiv.even-result p {\n  margin-bottom: 50px;\n  text-align: center;\n  font-weight: bold;\n  font-size: 2.5rem;\n}\n\ndiv.russian-result button,\ndiv.even-result button {\n  display: block;\n  margin-bottom: 20px;\n}\n\ndiv.russian-result p.russian-payer {\n  color: red;\n  animation-name: magnifyingStart;\n  animation-duration: 1s;\n}\n\n@keyframes magnifyingStart {\n  0% {\n    transform: scale(1);\n  }\n  50% {\n    transform: scale(1.5);\n  }\n  100% {\n    transform: scale(1);\n  }\n}\n\ndiv.creation-form {\n  width: 50%;\n  margin: 0 auto;\n}\n\ndiv.creation-form section#firstSection {\n  display: grid;\n  grid-template-columns: 2fr 3fr;\n}\n\ndiv.creation-form section#firstSection input,\ndiv.creation-form section#firstSection textarea,\ndiv.creation-form section#firstSection select {\n  margin-bottom: 40px;\n}\n\ndiv.creation-form section#firstSection span {\n  font-size: 0.8rem;\n  margin-left: 10px;\n}\n\ndiv.creation-form section#firstSection input#date {\n  width: 50%;\n}\n\ndiv.creation-form section#firstSection input#peopleNum {\n  width: 20%;\n}\n\ndiv.creation-form section#firstSection select#splitType,\ndiv.creation-form section#firstSection input#totalAmount {\n  width: 40%;\n}\n\ndiv.creation-form section#secondSection {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n}\n\ndiv.creation-form section#secondSection .participantLabel {\n  margin-right: 10px;\n}\n\ndiv.creation-form section#secondSection .participantInput {\n  margin-bottom: 20px;\n}\n\ndiv.creation-form p.error-message {\n  color: red;\n}\n\ndiv.creation-form button.submitButton {\n  margin: 30px 0;\n}\n/*# sourceMappingURL=style.css.map */", "",{"version":3,"sources":["webpack://./src/sass/style.scss","webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,6EAA6E;ACC/E;;ADEA;EACE,kBAAkB;EAClB,mBAAmB;ACCrB;;ADEA;EACE,UAAU;EACV,iBAAiB;ACCnB;;ADEA;;;EAGE,UAAU;EACV,cAAc;ACChB;;ADCA;EAEI,WAAW;ACCf;;ADHA;EAIM,2BAA2B;ACGjC;;ADPA;EAQQ,2BAA2B;ACGnC;;ADGA;;EAGI,mBAAmB;EACnB,kBAAkB;EAClB,iBAAiB;EACjB,iBAAiB;ACDrB;;ADLA;;EASI,cAAc;EACd,mBAAmB;ACCvB;;ADGA;EAEI,UAAU;EACV,+BAA+B;EAC/B,sBAAsB;ACD1B;;ADKA;EACE;IACE,mBAAmB;ECFrB;EDIA;IACE,qBAAqB;ECFvB;EDIA;IACE,mBAAmB;ECFrB;AACF;;ADKA;EACE,UAAU;EACV,cAAc;ACFhB;;ADAA;EAII,aAAa;EACb,8BAA8B;ACAlC;;ADLA;;;EASM,mBAAmB;ACEzB;;ADXA;EAYM,iBAAiB;EACjB,iBAAiB;ACGvB;;ADhBA;EAiBM,UAAU;ACGhB;;ADpBA;EAoBM,UAAU;ACIhB;;ADxBA;;EAwBM,UAAU;ACKhB;;AD7BA;EA4BI,aAAa;EACb,8BAA8B;ACKlC;;ADlCA;EA+BM,kBAAkB;ACOxB;;ADtCA;EAkCM,mBAAmB;ACQzB;;AD1CA;EAsCI,UAAU;ACQd;;AD9CA;EAyCI,cAAc;ACSlB;AACA,oCAAoC","sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\n  font-family: \"Gill Sans\", \"Gill Sans MT\", Calibri, \"Trebuchet MS\", sans-serif;\n}\n\nh1 {\n  text-align: center;\n  margin-bottom: 50px;\n}\n\ndiv#buttonWrapper {\n  width: 50%;\n  margin: 50px auto;\n}\n\ndiv.history,\ndiv.russian-result,\ndiv.even-result {\n  width: 50%;\n  margin: 0 auto;\n}\n\ndiv.history table {\n  width: 100%;\n}\n\ndiv.history table thead {\n  background-color: lightgray;\n  height: 40px;\n}\n\ndiv.history table tr:nth-child(2n) {\n  height: 30px;\n  background-color: lightcyan;\n}\n\ndiv.history table tr td {\n  padding-left: 10px;\n}\n\ndiv.history table tr td:last-child {\n  text-align: center;\n}\n\ndiv.russian-result p,\ndiv.even-result p {\n  margin-bottom: 50px;\n  text-align: center;\n  font-weight: bold;\n  font-size: 2.5rem;\n}\n\ndiv.russian-result button,\ndiv.even-result button {\n  display: block;\n  margin-bottom: 20px;\n}\n\ndiv.russian-result p.russian-payer {\n  color: red;\n  animation-name: magnifyingStart;\n  animation-duration: 1s;\n}\n\n@keyframes magnifyingStart {\n  0% {\n    transform: scale(1);\n  }\n  50% {\n    transform: scale(1.5);\n  }\n  100% {\n    transform: scale(1);\n  }\n}\n\ndiv.creation-form {\n  width: 50%;\n  margin: 0 auto;\n}\n\ndiv.creation-form section#firstSection {\n  display: grid;\n  grid-template-columns: 2fr 3fr;\n}\n\ndiv.creation-form section#firstSection input,\ndiv.creation-form section#firstSection textarea,\ndiv.creation-form section#firstSection select {\n  margin-bottom: 40px;\n}\n\ndiv.creation-form section#firstSection span {\n  font-size: 0.8rem;\n  margin-left: 10px;\n}\n\ndiv.creation-form section#firstSection input#date {\n  width: 50%;\n}\n\ndiv.creation-form section#firstSection input#peopleNum {\n  width: 20%;\n}\n\ndiv.creation-form section#firstSection select#splitType,\ndiv.creation-form section#firstSection input#totalAmount {\n  width: 40%;\n}\n\ndiv.creation-form section#secondSection {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n}\n\ndiv.creation-form section#secondSection .participantLabel {\n  margin-right: 10px;\n}\n\ndiv.creation-form section#secondSection .participantInput {\n  margin-bottom: 20px;\n}\n\ndiv.creation-form p.error-message {\n  color: red;\n}\n\ndiv.creation-form button.submitButton {\n  margin: 30px 0;\n}\n\ndiv#history-detail {\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  width: 30vw;\n  height: 50vh;\n  background-color: white;\n  border: 1px black solid;\n  padding: 20px;\n  box-shadow: 0 18px 50px -10px rgba(0, 0, 0, 0.2);\n}\n/*# sourceMappingURL=style.css.map */", "",{"version":3,"sources":["webpack://./src/sass/style.scss","webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,6EAA6E;ACC/E;;ADEA;EACE,kBAAkB;EAClB,mBAAmB;ACCrB;;ADEA;EACE,UAAU;EACV,iBAAiB;ACCnB;;ADEA;;;EAGE,UAAU;EACV,cAAc;ACChB;;ADCA;EAEI,WAAW;ACCf;;ADHA;EAIM,2BAA2B;EAC3B,YAAY;ACGlB;;ADRA;EASQ,YAAY;EACZ,2BAA2B;ACGnC;;ADbA;EAaQ,kBAAkB;ACI1B;;ADjBA;EAeU,kBAAkB;ACM5B;;ADCA;;EAGI,mBAAmB;EACnB,kBAAkB;EAClB,iBAAiB;EACjB,iBAAiB;ACCrB;;ADPA;;EASI,cAAc;EACd,mBAAmB;ACGvB;;ADCA;EAEI,UAAU;EACV,+BAA+B;EAC/B,sBAAsB;ACC1B;;ADGA;EACE;IACE,mBAAmB;ECArB;EDEA;IACE,qBAAqB;ECAvB;EDEA;IACE,mBAAmB;ECArB;AACF;;ADGA;EACE,UAAU;EACV,cAAc;ACAhB;;ADFA;EAII,aAAa;EACb,8BAA8B;ACElC;;ADPA;;;EASM,mBAAmB;ACIzB;;ADbA;EAYM,iBAAiB;EACjB,iBAAiB;ACKvB;;ADlBA;EAiBM,UAAU;ACKhB;;ADtBA;EAoBM,UAAU;ACMhB;;AD1BA;;EAwBM,UAAU;ACOhB;;AD/BA;EA4BI,aAAa;EACb,8BAA8B;ACOlC;;ADpCA;EA+BM,kBAAkB;ACSxB;;ADxCA;EAkCM,mBAAmB;ACUzB;;AD5CA;EAsCI,UAAU;ACUd;;ADhDA;EAyCI,cAAc;ACWlB;;ADPA;EACE,kBAAkB;EAClB,SAAS;EACT,QAAQ;EACR,gCAAgC;EAChC,WAAW;EACX,YAAY;EACZ,uBAAuB;EACvB,uBAAuB;EACvB,aAAa;EACb,gDAAgD;ACUlD;AACA,oCAAoC","sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
