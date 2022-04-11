@@ -34,7 +34,10 @@ div#buttonWrapper {
   margin: 50px auto;
 }
 
-div.history,
+div.history {
+  width: 40%;
+  margin: 0 auto;
+}
 div.russian-result,
 div.even-result {
   width: 35%;

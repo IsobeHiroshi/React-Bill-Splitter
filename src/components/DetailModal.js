@@ -12,8 +12,14 @@ const DetailModal = (props) => {
         <p>Date: {detailHistory.date.substr(0, 10)}</p>
         <p>Title: {detailHistory.title}</p>
         <p>Total Bill: ${detailHistory.totalAmountOfBill}</p>
-        <p>Split Type: {detailHistory.splitType}</p>
-        <p>Payer: {detailHistory.payer}</p>
+        <p>
+          Split Type:{" "}
+          {detailHistory.splitType == "even" ? "Even" : "Russian Roulette"}
+        </p>
+        <p>
+          Payer:{" "}
+          {detailHistory.payer == "everyone" ? "Everyone" : detailHistory.payer}
+        </p>
         <div>
           Participants:
           <ul>
