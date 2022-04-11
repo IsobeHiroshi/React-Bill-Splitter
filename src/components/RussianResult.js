@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 const RussianResult = (props) => {
   // Generate a random number to pick a payer randomly
-  const randomNum = Math.floor(Math.random() * props.participants.length + 1);
-  const billPayer = props.participants[randomNum];
+  const billPayer =
+    props.participants[
+      Math.floor(Math.random() * props.participants.length + 1)
+    ];
   const waiting = props.useDelay(2000);
 
   return (

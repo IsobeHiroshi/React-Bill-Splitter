@@ -11,7 +11,7 @@ const CreationPage = () => {
   const [phase, setPhase] = useState("input");
 
   /* Participants and totalAmountOfBill is taken from the CreationForm inputs */
-  const [participants, setParticipants] = useState([]);
+  const [participants, setParticipants] = useState();
 
   /* States for form change handler in CreationForm.js */
   const [totalAmountOfBill, setTotalAmountOfBill] = useState();
@@ -88,7 +88,7 @@ const CreationPage = () => {
   const dontSaveResultAndGoBack = (event) => {
     setPhase("input");
     setSplitType("even");
-    setParticipants([]);
+    setParticipants();
     setTotalAmountOfBill(0);
     setDescription("");
     setTitle("");
@@ -131,14 +131,22 @@ const CreationPage = () => {
     );
   } else if (phase == "result" && splitType == "russianRoulette") {
     return (
-      <RussianResult
-        participants={participants}
-        totalAmountOfBill={totalAmountOfBill}
-        setPhase={setPhase}
-        saveResultAndGoBack={saveResultAndGoBack}
-        dontSaveResultAndGoBack={dontSaveResultAndGoBack}
-        useDelay={useDelay}
-      />
+      <>
+        {participants ? (
+          <RussianResult
+            participants={participants}
+            totalAmountOfBill={totalAmountOfBill}
+            setPhase={setPhase}
+            saveResultAndGoBack={saveResultAndGoBack}
+            dontSaveResultAndGoBack={dontSaveResultAndGoBack}
+            useDelay={useDelay}
+          />
+        ) : (
+          <div>
+            <p>Loading...</p>
+          </div>
+        )}
+      </>
     );
   }
 };
