@@ -41,10 +41,10 @@ https://wmdd4936-hisobe00.herokuapp.com/
 ### Expected POST Body Format
 
 - This app basically handles only one type of object, which should have the properties below.
-  - Date: String, ISO8601 Format, required.
-  - SplitType: String, "even"(default) or "russianRoulette".
-  - Participants: Array, 2 items(people) minimum and 10 maximum.
-  - Title: String, 1 character minimum and 100 maximum, required.
-  - Description: String, 200 characters maximum.
-  - TotalAmountOfBill: Number, minimum 1.
-  - Payer: String, 1 character minimum and 50 maximum, required. (When split type is set to "even," this property will be automatically set to "everyone.")
+  - **Date:** String, ISO8601 Format, required.
+  - **SplitType:** String, "even"(default) or "russianRoulette".
+  - **Participants:** Array, 2 items(people) minimum and 10 maximum.
+  - **Title:** String, 1 character minimum and 100 maximum, required.
+  - **Description:** String, 200 characters maximum.
+  - **TotalAmountOfBill:** Number, minimum 1.
+  - **Payer:** String, 1 character minimum and 50 maximum, required. (When split type is set to "even," this property will be automatically set to "everyone.")
