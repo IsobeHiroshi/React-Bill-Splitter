@@ -20,8 +20,11 @@ https://wmdd4936-hisobe00.herokuapp.com/
 ### Endpoints
 
 - **/api/v1/splitDataTest(POST):** Test the data format which is about to be submitted. If there are unacceptable data format, the errors will show up on the UI.
+
 - **/api/v1/splitData(POST):** Creates a new split data and save it in the database.
+
 - **/api/v1/splitData(GET):** Fetch all the saved data from the database.
+
 - **/api/v1/splitData(PATCH):** Delete one history data based on the passed document id.
 
 ### How to use Endpoints
