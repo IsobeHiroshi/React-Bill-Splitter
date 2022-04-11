@@ -16,6 +16,9 @@ const App = (props) => {
         </div>
         {mode ? <CreationPage /> : <RetrievalPage />}
       </div>
+      <div id="footer">
+        <p>&copy; 2022 Hiroshi Isobe, No Rights Reserved.</p>
+      </div>
     </>
   );
 };

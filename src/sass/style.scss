@@ -6,6 +6,13 @@ body {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
+div#footer {
+  margin-top: 40px;
+  p {
+    text-align: center;
+  }
+}
+
 button {
   background-color: paleturquoise;
   border: none;
@@ -23,7 +30,7 @@ h1 {
 }
 
 div#buttonWrapper {
-  width: 50%;
+  width: 35%;
   margin: 50px auto;
 }
 
@@ -94,8 +101,11 @@ div.russian-result {
 }
 
 div.creation-form {
-  width: 50%;
+  width: 35%;
   margin: 0 auto;
+  label {
+    font-size: 1.2rem;
+  }
   section#firstSection {
     display: grid;
     grid-template-columns: 2fr 3fr;
@@ -124,6 +134,7 @@ div.creation-form {
     display: grid;
     grid-template-columns: 1fr 1fr;
     .participantLabel {
+      font-size: 1rem;
       margin-right: 10px;
     }
     .participantInput {

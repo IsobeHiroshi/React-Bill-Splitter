@@ -70,7 +70,7 @@ const CreationForm = (props) => {
           <option value="russianRoulette">Russian Roulette</option>
         </select>
         <label htmlFor="peopleNum">
-          Number of people<span>(max:10)</span>
+          Number of people<span>(2 - 10)</span>
         </label>
         <input
           type="number"
