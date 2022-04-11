@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import DetailModal from "./DetailModal";
 
 const RetrievalArea = (props) => {
-  /* State to toggle the detail modal */
-  const [showDetail, setShowDetail] = useState(false);
   /* State to store the id the history data */
   const [whichHistory, setWhichHistory] = useState();
 
@@ -37,7 +35,7 @@ const RetrievalArea = (props) => {
                   <button
                     className={data._id}
                     onClick={(event) => {
-                      setShowDetail(!showDetail);
+                      props.setShowDetail(!props.showDetail);
                       /* Get the id of the history data and pass it to the child component */
                       setWhichHistory(event.target.className);
                     }}
@@ -50,13 +48,15 @@ const RetrievalArea = (props) => {
           </tbody>
         </table>
       </div>
-      {showDetail ? (
+      {props.showDetail ? (
         <DetailModal
-          setShowDetail={setShowDetail}
-          showDetail={showDetail}
+          setShowDetail={props.setShowDetail}
+          showDetail={props.showDetail}
           historyArr={props.historyArr}
+          setHistoryArr={props.setHistoryArr}
           whichHistory={whichHistory}
           setWhichHistory={setWhichHistory}
+          loadHistory={props.loadHistory}
         />
       ) : (
         ""

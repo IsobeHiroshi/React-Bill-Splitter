@@ -190,4 +190,10 @@ div#history-detail {
 div#history-detail button {
   margin-top: 30px;
 }
+
+div#history-detail button:last-child {
+  background-color: #a00000;
+  color: white;
+  margin-left: 20px;
+}
 /*# sourceMappingURL=style.css.map */

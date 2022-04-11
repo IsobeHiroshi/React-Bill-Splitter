@@ -1,9 +1,21 @@
+import axios from "axios";
 import React from "react";
 const DetailModal = (props) => {
   /* Find the desired history data based on the id passed from the parent */
   const detailHistory = props.historyArr.find(
     (history) => history._id === props.whichHistory
   );
+
+  const deleteHistoryHandler = (event, historyId) => {
+    let deleteId = {
+      id: historyId,
+    };
+    axios
+      .patch("/api/v1/splitData", deleteId)
+      .then(props.setShowDetail(!props.showDetail))
+      .then(props.setWhichHistory(""))
+      .catch((error) => console.log(error));
+  };
 
   return (
     <div id="history-detail">
@@ -38,6 +50,11 @@ const DetailModal = (props) => {
         }}
       >
         Close
+      </button>
+      <button
+        onClick={(event) => deleteHistoryHandler(event, props.whichHistory)}
+      >
+        Delete this
       </button>
     </div>
   );

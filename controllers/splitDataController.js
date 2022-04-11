@@ -14,7 +14,7 @@ const postSplitData = (req, res) => {
 
   newSplitData
     .save()
-    .then((result) => console.log("Split Data Successfully Saved"))
+    .then((result) => res.status(200).send("Split Data Successfully Saved"))
     .catch((error) => res.status(500).send(error));
 };
 
@@ -36,4 +36,17 @@ const getSplitData = (req, res) => {
     .catch((error) => console.log(error));
 };
 
-module.exports = { postSplitData, postSplitDataTest, getSplitData };
+/* Delete one history data based on its object id */
+const deleteSplitData = (req, res) => {
+  splitData
+    .deleteOne({ _id: req.body.id })
+    .then((result) => res.status(200).send("History deletion success"))
+    .catch((error) => console.log(error));
+};
+
+module.exports = {
+  postSplitData,
+  postSplitDataTest,
+  getSplitData,
+  deleteSplitData,
+};
