@@ -71,6 +71,12 @@ div.even-result button {
   margin-bottom: 20px;
 }
 
+div.russian-result button:last-child,
+div.even-result button:last-child {
+  background-color: #6d6d6d;
+  color: white;
+}
+
 div.russian-result p.russian-payer {
   color: red;
   animation-name: magnifyingStart;
