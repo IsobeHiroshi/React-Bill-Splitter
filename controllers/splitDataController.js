@@ -18,6 +18,7 @@ const postSplitData = (req, res) => {
     .catch((error) => res.status(500).send(error));
 };
 
+/* Test the split data using validator.js */
 const postSplitDataTest = (req, res) => {
   validators.splitDataValidator(req, res);
   if (res.locals.errors) {
@@ -27,8 +28,12 @@ const postSplitDataTest = (req, res) => {
   }
 };
 
+/* Fetch all the history data from the database  */
 const getSplitData = (req, res) => {
-  splitData.find().then((results) => res.send(results));
+  splitData
+    .find()
+    .then((results) => res.status(200).send(results))
+    .catch((error) => console.log(error));
 };
 
 module.exports = { postSplitData, postSplitDataTest, getSplitData };

@@ -5,13 +5,13 @@ import RussianResult from "./RussianResult";
 import axios from "axios";
 
 const CreationPage = () => {
+  /* Split Type is either "even" or "Russian Roulette" */
   const [splitType, setSplitType] = useState("even");
 
   /* Phase is either "input" or "result," based on which the form component or the result component is rendered */
   const [phase, setPhase] = useState("input");
 
   /* States for form change handler in CreationForm.js */
-  /* Participants and totalAmountOfBill is taken from the CreationForm inputs */
   const [participants, setParticipants] = useState();
   const [totalAmountOfBill, setTotalAmountOfBill] = useState();
   const [date, setDate] = useState();
@@ -46,6 +46,7 @@ const CreationPage = () => {
     axios
       .post("/api/v1/splitDataTest", splitData)
       .then((result) => {
+        /* When the data doesn't pass validation, show the error messages on UI */
         if (result.data.errors) {
           const errorArea = document.getElementById("errorArea");
           errorArea.innerHTML = "";

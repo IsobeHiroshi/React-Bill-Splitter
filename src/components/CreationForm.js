@@ -26,6 +26,7 @@ const CreationForm = (props) => {
     props.setTotalAmountOfBill(event.target.value);
   };
 
+  /* Limit the number of participants and render the inputs based on it*/
   const NumOfPeopleArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (

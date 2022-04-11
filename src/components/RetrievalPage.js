@@ -8,7 +8,6 @@ const RetrievalPage = () => {
     axios
       .get("/api/v1/splitData")
       .then((results) => {
-        console.log(results.data);
         setHistoryArr(results.data);
       })
       .catch((error) => console.log(error));
@@ -19,7 +18,7 @@ const RetrievalPage = () => {
       {historyArr ? (
         <RetrievalArea historyArr={historyArr} />
       ) : (
-        <div className="history">"Loading..."</div>
+        <div className="history">Loading...</div>
       )}
     </>
   );

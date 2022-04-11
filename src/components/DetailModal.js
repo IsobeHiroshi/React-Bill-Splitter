@@ -1,5 +1,6 @@
 import React from "react";
 const DetailModal = (props) => {
+  /* Find the desired history data based on the id passed from the parent */
   const detailHistory = props.historyArr.find(
     (history) => history._id === props.whichHistory
   );

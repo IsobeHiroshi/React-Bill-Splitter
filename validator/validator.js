@@ -100,6 +100,7 @@ exports.splitDataValidator = (req, res) => {
 
   validate(req.body);
 
+  /* Store the error message to a local variable to pass to front end */
   if (validate.errors != null) {
     res.locals.errors = validate.errors;
   }
